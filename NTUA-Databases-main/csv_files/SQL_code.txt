@@ -1,0 +1,201 @@
+--Purchases
+
+--Search Dropdown 
+
+--Available Stores
+SELECT * FROM store ORDER BY city ASC 
+
+--Available Categories
+SELECT * FROM category ORDER BY name ASC
+
+--Results using pur_categ VIEW (view containing purchases per category)
+--The query is being built sequentially
+--Some Examples
+
+SELECT * FROM pur_categ WHERE catid IN (1,2,4,5) --picking categories
+AND storeid IN (3,7,12,14) AND payment_method = 'credit card' --picking stores and payment method
+AND (SELECT SUM(amount) FROM purch_prod WHERE pur_categ.purid = purch_prod.purid)
+between 12 AND (SELECT MAX((SELECT SUM(amount) FROM purch_prod WHERE purchase.purid = purch_prod.purid)) as max_amount FROM purchase) --picking total amount
+
+SELECT * FROM pur_categ WHERE catid IN (1,2,4,5) --picking categories
+AND payment_method = 'cash' --picking payment method
+AND total between (SELECT MIN(total) FROM purchase) and 35.7 --picking total cost
+AND date between '2019-02-01' and '2019-08-04' --picking date
+
+--Results using pur_cust VIEW (view containing purchases and customer info)
+--The query is being built sequentially
+--Some Examples
+
+SELECT * FROM pur_cust WHERE storeid IN (1,2,5,12) --picking stores
+AND (SELECT SUM(amount) FROM purch_prod 
+WHERE pur_cust.purid = purch_prod.purid) between 
+(SELECT MIN((SELECT SUM(amount) FROM purch_prod WHERE purchase.purid = purch_prod.purid)) 
+as min_amount FROM purchase) AND 6 --picking total amount
+
+SELECT * FROM pur_cust WHERE total between 32.3 AND (SELECT MAX(total) FROM purchase)
+AND date between '2020-01-01' and '2020-03-01'
+
+--Preferences
+
+--Default Queries when loading the page for the 1st time (no stores selected)
+
+--Top 10 Pairs of Products
+SELECT COUNT(*) AS count, t1.productid, t1.name AS name1, t1.brand AS brand1, t2.productid, t2.name AS name2, t2.brand AS brand2
+FROM famous_pairs t1, famous_pairs t2
+WHERE t1.productid > t2.productid
+AND t1.purid = t2.purid
+GROUP BY t1.productid, t2.productid ORDER BY count DESC LIMIT 10
+
+--Top 10 Positions in Store(s)
+SELECT COUNT(*) AS count, offers.productid, offers.storeid, offers.corridor, offers.shelve
+FROM purch_prod, offers, purchase
+WHERE purchase.purid = purch_prod.purid 
+AND purchase.storeid = offers.storeid 
+AND purch_prod.productid = offers.productid 
+GROUP BY offers.productid, offers.storeid
+ORDER BY count DESC
+LIMIT 10
+
+--Label Trust per Category
+--isLabel_pref View is used
+SELECT product.islabel, category.name, purchase.storeid
+FROM purchase, purch_prod, product, category
+WHERE purchase.purid = purch_prod.purid
+AND purch_prod.productid = product.productid
+AND product.catid = category.catid
+
+SELECT COUNT(*) AS count, islabel, name FROM isLabel_pref  
+GROUP BY name, islabel
+
+--Profit per Hour (€)
+SELECT TIME_FORMAT(purchase.time, "%H") AS hourspan, SUM(total) AS profit
+FROM purchase
+GROUP BY hourspan
+
+--Age Group per Hour
+SELECT COUNT(*) as count, TIME_FORMAT(purchase.time, "%H") AS hourspan,
+(CASE
+	WHEN YEAR(CURRENT_TIMESTAMP) - DATE_FORMAT(customer.date_of_birth, "%Y") <= 24 THEN "Age: 15-24"
+        WHEN YEAR(CURRENT_TIMESTAMP) - DATE_FORMAT(customer.date_of_birth, "%Y") <= 40 THEN "Age: 25-40"
+        WHEN YEAR(CURRENT_TIMESTAMP) - DATE_FORMAT(customer.date_of_birth, "%Y") <= 64 THEN "Age: 41-64"
+        ELSE "Age: 65+"
+END) AS age_group
+FROM purchase, customer
+WHERE purchase.cardid = customer.cardid
+GROUP BY hourspan, age_group
+
+--Top 3 products by age group
+--This query finds the top 3 products of Age Group: 15-24
+--We union 4 queries like this to show the result for every age group
+(SELECT * FROM ( SELECT  SUM(purch_prod.amount) AS total , name AS prname, product.brand as brand,
+    (CASE
+        WHEN YEAR(CURRENT_TIMESTAMP) - DATE_FORMAT(customer.date_of_birth, "%Y") <= 24 THEN "Age: 15-24"
+        WHEN YEAR(CURRENT_TIMESTAMP) - DATE_FORMAT(customer.date_of_birth, "%Y") <= 40 THEN "Age: 25-40"
+        WHEN YEAR(CURRENT_TIMESTAMP) - DATE_FORMAT(customer.date_of_birth, "%Y") <= 64 THEN "Age: 41-64"
+        ELSE "Age: 65+"
+    END) AS age_group
+    FROM purchase, purch_prod, customer, product
+    WHERE purchase.cardid = customer.cardid and purchase.purid = purch_prod.purid and purch_prod.productid = product.productid
+    group by age_group, prname, brand
+    order by age_group, total desc) AS t
+    WHERE t.age_group = "Age: 15-24" order by t.total desc limit 3)
+
+--Card Points by Age Group
+SELECT  SUM(customer.points_redeemed) AS redeemedp , SUM(customer.current_points) AS currentp,
+(CASE
+	WHEN YEAR(CURRENT_TIMESTAMP) - DATE_FORMAT(customer.date_of_birth, "%Y") <= 24 THEN "Age: 15-24"
+    WHEN YEAR(CURRENT_TIMESTAMP) - DATE_FORMAT(customer.date_of_birth, "%Y") <= 40 THEN "Age: 25-40"
+    WHEN YEAR(CURRENT_TIMESTAMP) - DATE_FORMAT(customer.date_of_birth, "%Y") <= 64 THEN "Age: 41-64"
+    ELSE "Age: 65+"
+END) AS age_group
+FROM customer
+group by age_group
+
+--Customers
+
+--Queries for Customer Profile Page
+
+--Customer Info
+SELECT *, YEAR(CURRENT_TIMESTAMP) - DATE_FORMAT(customer.date_of_birth, "%Y") as age FROM customer WHERE cardid=30302136787797
+
+--Phone Numbers
+SELECT * FROM phone_number WHERE cardid=30302136787797
+
+--Top 10 Products
+SELECT SUM(purch_prod.amount) as total, product.name, product.brand FROM customer, purchase, purch_prod, product
+WHERE customer.cardid = purchase.cardid AND purchase.purid = purch_prod.purid AND purch_prod.productid = product.productid AND customer.cardid=30302136787797
+GROUP BY product.name, product.brand
+ORDER BY total DESC
+LIMIT 10
+
+--Stores that Customer Visits
+SELECT COUNT(DISTINCT(purchase.storeid)) FROM customer, purchase
+WHERE customer.cardid = purchase.cardid AND customer.cardid = 30302136787797
+
+SELECT DISTINCT(store.storeid), store.street_name, store.street_number, store.city FROM customer, purchase, store
+WHERE customer.cardid = purchase.cardid AND purchase.storeid = store.storeid AND customer.cardid = 30302136787797
+
+--Visiting Hours of Selected Store
+SELECT TIME_FORMAT(purchase.time, "%H") AS hourspan, COUNT(purchase.purid) as visits
+FROM purchase, customer WHERE customer.cardid = purchase.cardid AND customer.cardid = 30302136787797
+AND purchase.storeid = 4 
+
+--Average per Month
+SELECT TRUNCATE(AVG(total),2) as average, MONTHNAME(date) as month, year(date) as year FROM purchase, customer
+WHERE customer.cardid = purchase.cardid AND customer.cardid = 30302136787797
+GROUP BY MONTHNAME(date), year(date)
+ORDER BY year(date), MONTHNAME(date)
+
+--Average per Week
+SELECT TRUNCATE(AVG(total),2) as average, FIRST_DAY_OF_WEEK(date) as start, LAST_DAY_OF_WEEK(date) as end FROM purchase, customer
+WHERE customer.cardid = purchase.cardid AND customer.cardid = 30302136787797
+GROUP BY FIRST_DAY_OF_WEEK(date), LAST_DAY_OF_WEEK(date)
+ORDER BY FIRST_DAY_OF_WEEK(date)
+
+--Stores in Athens, Patras, Thessaloniki 
+SELECT * FROM store WHERE city = "Athens";
+SELECT * FROM store WHERE city = "Patras";
+SELECT * FROM store WHERE city = "Thessaloniki";
+SELECT DISTINCT city FROM store;
+INSERT INTO store (storeid, street_name,street_number,city,zip,sq_meters)
+VALUES (21, 'Natasa Theodoridou', 1, 'Athens', 12345, 129.0); 
+DELETE FROM store WHERE storeid = 1;
+SELECT * FROM store WHERE storeid= 3;
+
+--Opening hours
+ SELECT * FROM opening_hours WHERE storeid= 2
+ ORDER BY FIELD (day, 'Monday', 'Tuesday', 'Wednesday', 'Thursday' ,'Friday', 'Saturday', 'Sunday' );
+
+INSERT INTO opening_hours (storeid, day,start_time,end_time) 
+VALUES (21, "Monday", "08:00:00". "20:00:00")
+UPDATE opening_hours SET start_time="08:00:00", end_time="18:00:00" 
+WHERE (storeid = 1 AND day= "Monday");
+
+--Categories
+SELECT * FROM category;
+INSERT INTO category (catid, name) VALUES (3,"Snacks");
+DELETE FROM category WHERE catid = 1;
+SELECT * FROM category WHERE catid = 2;
+
+--Products
+SELECT * FROM product WHERE catid = 2;
+SELECT * FROM product;
+DELETE FROM product WHERE productid = 4;
+INSERT INTO product (productid, name, islabel, brand,catid) 
+VALUES (23, "wiskey", 1, "cutty shark", 3) ;
+
+--Offers
+SELECT DISTINCT corridor FROM offers;
+SELECT DISTINCT shelve FROM offers;
+SELECT * FROM offers WHERE productid = 6;
+INSERT INTO offers (storeid, productid, current_price, quantity,corridor, shelve) 
+VALUES (1, 1, 12.30, 40, "?", 1);
+SELECT * FROM offers;
+UPDATE offers SET current_price = 4.20 WHERE (productid = 4 AND storeid= 15 );
+
+-- price history
+INSERT INTO pricehistory (storeid, productid, date, issales, newprice)
+VALUES (1, "wine", "2020-10-10", 0, 12.30);
+SELECT * FROM pricehistory WHERE productid = 3;
+SELECT * FROM pricehistory WHERE ( storeid= 4 AND productid = 4);
+

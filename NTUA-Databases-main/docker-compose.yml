@@ -1,0 +1,29 @@
+version: "3"
+
+services: 
+    php:
+        build:
+            context: ./
+            dockerfile: php.dockerfile
+        volumes:
+            - ./src:/var/www/html/
+        ports:
+            - 8888:80
+    mysql:
+        image: mysql:5.7.20
+        command: "--innodb_use_native_aio=0"
+        ports: 
+            - 3306:3306
+        environment: 
+            - "MYSQL_USER=root"
+            - "MYSQL_ROOT_PASSWORD=root"
+        volumes:
+                - ./mysqldata:/var/lib/mysql
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        depends_on: 
+            - mysql
+        ports: 
+            - 8080:80
+        links:
+            - mysql:db
