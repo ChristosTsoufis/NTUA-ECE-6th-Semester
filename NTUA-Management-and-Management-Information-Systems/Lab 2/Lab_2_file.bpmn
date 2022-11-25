@@ -1,0 +1,854 @@
+<?xml version="1.0" encoding="UTF-8"?><bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0pru4ya" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.7.0" xmlns:qbp="http://www.qbp-simulator.com/Schema201212" xmlns:qbpapi="http://www.qbp-simulator.com/ApiSchema201212">
+  <bpmn:process id="Process_0e84fab" isExecutable="false">
+    <bpmn:startEvent id="StartEvent_03f8de0" name="START">
+      <bpmn:outgoing>Flow_0jmzy02</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1onz5ln</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1cwvm5k</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Activity_0q181i7" name="Βάζουμε στο μπλέντερ τα παραπάνω υλικά και τα ψιλοκόβουμε">
+      <bpmn:incoming>Flow_0jmzy02</bpmn:incoming>
+      <bpmn:outgoing>Flow_178dume</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Activity_0vu1mct" name="Ζεσταίνουμε το ελαιόλαδο σε κατσαρόλα">
+      <bpmn:incoming>Flow_178dume</bpmn:incoming>
+      <bpmn:outgoing>Flow_1lxgpy0</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_178dume" sourceRef="Activity_0q181i7" targetRef="Activity_0vu1mct"/>
+    <bpmn:task id="Activity_1pz9z7z" name="Προσθέτουμε όλα τα υπόλοιπα υλικά και ανακατεύουμε">
+      <bpmn:incoming>Flow_1chc917</bpmn:incoming>
+      <bpmn:outgoing>Flow_0yhnqsr</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Activity_085fw0j" name="Προσθέτουμε τον κιμά">
+      <bpmn:incoming>Flow_1lxgpy0</bpmn:incoming>
+      <bpmn:outgoing>Flow_1chc917</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1lxgpy0" sourceRef="Activity_0vu1mct" targetRef="Activity_085fw0j"/>
+    <bpmn:sequenceFlow id="Flow_1chc917" sourceRef="Activity_085fw0j" targetRef="Activity_1pz9z7z"/>
+    <bpmn:sequenceFlow id="Flow_0yhnqsr" sourceRef="Activity_1pz9z7z" targetRef="Event_1q58pe0"/>
+    <bpmn:intermediateCatchEvent id="Event_1q58pe0" name="4'">
+      <bpmn:incoming>Flow_0yhnqsr</bpmn:incoming>
+      <bpmn:outgoing>Flow_0v6zrn2</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_0qtu54u"/>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:task id="Activity_045zb0n" name="Προσθέτουμε τον πελτέ, τον ανακατεύουμε και αφήνουμε να ψηθεί">
+      <bpmn:incoming>Flow_0v6zrn2</bpmn:incoming>
+      <bpmn:outgoing>Flow_0yetp86</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0v6zrn2" sourceRef="Event_1q58pe0" targetRef="Activity_045zb0n"/>
+    <bpmn:sequenceFlow id="Flow_0yetp86" sourceRef="Activity_045zb0n" targetRef="Event_0k13lqt"/>
+    <bpmn:intermediateCatchEvent id="Event_0k13lqt" name="1'">
+      <bpmn:incoming>Flow_0yetp86</bpmn:incoming>
+      <bpmn:outgoing>Flow_00osn3m</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_0qa76oi"/>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:task id="Activity_0vvoaem" name="Σβήνουμε με το κονιάκ και αφήνουμε να εξατμιστεί">
+      <bpmn:incoming>Flow_00osn3m</bpmn:incoming>
+      <bpmn:outgoing>Flow_1l5ayyr</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_00osn3m" sourceRef="Event_0k13lqt" targetRef="Activity_0vvoaem"/>
+    <bpmn:task id="Activity_0v69pcs" name="Προσθέτουμε τις ντομάτες και 1/2 φλιτζάνι ζεστό νερό">
+      <bpmn:incoming>Flow_1l5ayyr</bpmn:incoming>
+      <bpmn:outgoing>Flow_0kygndc</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1l5ayyr" sourceRef="Activity_0vvoaem" targetRef="Activity_0v69pcs"/>
+    <bpmn:task id="Activity_0omtkzn" name="Σκεπάζουμε την κατσαρόλα, χαμηλώνουμε τη φωτιά και σιγοβράζουμε">
+      <bpmn:incoming>Flow_0kygndc</bpmn:incoming>
+      <bpmn:outgoing>Flow_1l13lus</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0kygndc" sourceRef="Activity_0v69pcs" targetRef="Activity_0omtkzn"/>
+    <bpmn:sequenceFlow id="Flow_1l13lus" sourceRef="Activity_0omtkzn" targetRef="Event_1c76fwr"/>
+    <bpmn:intermediateCatchEvent id="Event_1c76fwr" name="30'">
+      <bpmn:incoming>Flow_1l13lus</bpmn:incoming>
+      <bpmn:outgoing>Flow_0pd2tkg</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_1ogx8za"/>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:task id="Activity_1hjadwq" name="Ελέγχουμε αν είναι ζουμερός και μελωμένος ο κιμάς">
+      <bpmn:incoming>Flow_0pd2tkg</bpmn:incoming>
+      <bpmn:incoming>Flow_0fg0xfd</bpmn:incoming>
+      <bpmn:outgoing>Flow_0m2r1wh</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0pd2tkg" sourceRef="Event_1c76fwr" targetRef="Activity_1hjadwq"/>
+    <bpmn:exclusiveGateway id="Gateway_0y9qri4" name="Στέγνωσε ο κιμάς?">
+      <bpmn:incoming>Flow_0m2r1wh</bpmn:incoming>
+      <bpmn:outgoing>Flow_0vtw9zu</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0z1j1ts</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0m2r1wh" sourceRef="Activity_1hjadwq" targetRef="Gateway_0y9qri4"/>
+    <bpmn:task id="Activity_11py707" name="Συνεχίζουμε και ρίχνουμε δαφνόφυλλο, κανέλα και αλατοπίπερο">
+      <bpmn:incoming>Flow_0vtw9zu</bpmn:incoming>
+      <bpmn:outgoing>Flow_15klkgm</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0vtw9zu" name="Όχι" sourceRef="Gateway_0y9qri4" targetRef="Activity_11py707"/>
+    <bpmn:task id="Activity_0h3g05o" name="Προσθέτουμε λίγο νερό">
+      <bpmn:incoming>Flow_0z1j1ts</bpmn:incoming>
+      <bpmn:outgoing>Flow_0fg0xfd</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0z1j1ts" name="Ναι" sourceRef="Gateway_0y9qri4" targetRef="Activity_0h3g05o"/>
+    <bpmn:sequenceFlow id="Flow_0fg0xfd" sourceRef="Activity_0h3g05o" targetRef="Activity_1hjadwq"/>
+    <bpmn:exclusiveGateway id="Gateway_0iz1fpn" name="Είναι ζουμερός ο κιμάς?">
+      <bpmn:incoming>Flow_00d0s6r</bpmn:incoming>
+      <bpmn:outgoing>Flow_0dufeb4</bpmn:outgoing>
+      <bpmn:outgoing>Flow_06q1q0j</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Activity_0on0em2" name="Αφήνουμε τα μυρωδικά να αρωματίσουν">
+      <bpmn:incoming>Flow_0dufeb4</bpmn:incoming>
+      <bpmn:outgoing>Flow_0n2k1nm</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0dufeb4" name="Ναι" sourceRef="Gateway_0iz1fpn" targetRef="Activity_0on0em2"/>
+    <bpmn:sequenceFlow id="Flow_0n2k1nm" sourceRef="Activity_0on0em2" targetRef="Event_0lmbv92"/>
+    <bpmn:intermediateCatchEvent id="Event_0lmbv92" name="5'">
+      <bpmn:incoming>Flow_0n2k1nm</bpmn:incoming>
+      <bpmn:outgoing>Flow_0cuxi8f</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_1k28rka"/>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:task id="Activity_1anek17" name="Αφαιρούμε τα μυρωδικά">
+      <bpmn:incoming>Flow_0cuxi8f</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ti6psm</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0cuxi8f" sourceRef="Event_0lmbv92" targetRef="Activity_1anek17"/>
+    <bpmn:task id="Activity_1yk2bfn" name="Αποσύρουμε από τη φωτιά και το αφήνουμε στην άκρη">
+      <bpmn:incoming>Flow_1ti6psm</bpmn:incoming>
+      <bpmn:outgoing>Flow_0wnxb8n</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1ti6psm" sourceRef="Activity_1anek17" targetRef="Activity_1yk2bfn"/>
+    <bpmn:task id="Activity_1ttpf81" name="Προσθέτουμε λίγο ζεστό νερό ή ζωμό">
+      <bpmn:incoming>Flow_06q1q0j</bpmn:incoming>
+      <bpmn:outgoing>Flow_00b3r8q</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_06q1q0j" name="Όχι" sourceRef="Gateway_0iz1fpn" targetRef="Activity_1ttpf81"/>
+    <bpmn:task id="Activity_0v6xhbn" name="Ελέγχουμε ξανά αν είναι μελωμένος ο κιμάς">
+      <bpmn:incoming>Flow_15klkgm</bpmn:incoming>
+      <bpmn:incoming>Flow_00b3r8q</bpmn:incoming>
+      <bpmn:outgoing>Flow_00d0s6r</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_15klkgm" sourceRef="Activity_11py707" targetRef="Activity_0v6xhbn"/>
+    <bpmn:sequenceFlow id="Flow_00d0s6r" sourceRef="Activity_0v6xhbn" targetRef="Gateway_0iz1fpn"/>
+    <bpmn:sequenceFlow id="Flow_00b3r8q" sourceRef="Activity_1ttpf81" targetRef="Activity_0v6xhbn"/>
+    <bpmn:task id="Activity_1ehycuv" name="Βάζουμε όλα τα υλικά κρύα  (εκτός από τα αυγά) στην κατσαρόλα">
+      <bpmn:incoming>Flow_1onz5ln</bpmn:incoming>
+      <bpmn:outgoing>Flow_0973xoj</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Activity_0ms0chv" name="Ανακατεύουμε τακτικά σε μέτρια προς δυνατή φωτιά">
+      <bpmn:incoming>Flow_0973xoj</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ch80e9</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0973xoj" sourceRef="Activity_1ehycuv" targetRef="Activity_0ms0chv"/>
+    <bpmn:sequenceFlow id="Flow_0ch80e9" sourceRef="Activity_0ms0chv" targetRef="Event_0au78gl"/>
+    <bpmn:intermediateCatchEvent id="Event_0au78gl" name="5'">
+      <bpmn:incoming>Flow_0ch80e9</bpmn:incoming>
+      <bpmn:outgoing>Flow_0on79tk</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_1hg8ws2"/>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:task id="Activity_1pkqj7w" name="Αφήνουμε να βράσει">
+      <bpmn:incoming>Flow_0on79tk</bpmn:incoming>
+      <bpmn:incoming>Flow_1t9m56k</bpmn:incoming>
+      <bpmn:outgoing>Flow_1vjvslf</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0on79tk" sourceRef="Event_0au78gl" targetRef="Activity_1pkqj7w"/>
+    <bpmn:exclusiveGateway id="Gateway_0hwrcwf" name="Είναι έτοιμη?">
+      <bpmn:incoming>Flow_1vjvslf</bpmn:incoming>
+      <bpmn:outgoing>Flow_06dcwer</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1t9m56k</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1vjvslf" sourceRef="Activity_1pkqj7w" targetRef="Gateway_0hwrcwf"/>
+    <bpmn:task id="Activity_0irdzbf" name="Αποσύρουμε από τη φωτιά και αφήνουμε να κρυώσει">
+      <bpmn:incoming>Flow_06dcwer</bpmn:incoming>
+      <bpmn:outgoing>Flow_16hezj7</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_06dcwer" name="Ναι" sourceRef="Gateway_0hwrcwf" targetRef="Activity_0irdzbf"/>
+    <bpmn:sequenceFlow id="Flow_1t9m56k" name="Όχι" sourceRef="Gateway_0hwrcwf" targetRef="Activity_1pkqj7w"/>
+    <bpmn:sequenceFlow id="Flow_16hezj7" sourceRef="Activity_0irdzbf" targetRef="Event_1b0m8xi"/>
+    <bpmn:intermediateCatchEvent id="Event_1b0m8xi" name="5'">
+      <bpmn:incoming>Flow_16hezj7</bpmn:incoming>
+      <bpmn:outgoing>Flow_07v2xx8</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_1owhdwz"/>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:task id="Activity_1793qhx" name="Προσθέτουμε τα χτυπημένα αυγά και το κεφαλοτύρι">
+      <bpmn:incoming>Flow_07v2xx8</bpmn:incoming>
+      <bpmn:outgoing>Flow_09ovx13</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_07v2xx8" sourceRef="Event_1b0m8xi" targetRef="Activity_1793qhx"/>
+    <bpmn:task id="Activity_00i2zgt" name="Ανακατεύουμε με το σύρμα ώστε να ομογενοποιηθεί η κρέμα.">
+      <bpmn:incoming>Flow_09ovx13</bpmn:incoming>
+      <bpmn:outgoing>Flow_0cw7yzo</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_09ovx13" sourceRef="Activity_1793qhx" targetRef="Activity_00i2zgt"/>
+    <bpmn:task id="Activity_1kadmbq" name="Το αφήνουμε στην άκρη">
+      <bpmn:incoming>Flow_0cw7yzo</bpmn:incoming>
+      <bpmn:outgoing>Flow_1j871re</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0cw7yzo" sourceRef="Activity_00i2zgt" targetRef="Activity_1kadmbq"/>
+    <bpmn:task id="Activity_1ba5rgz" name="Βάζουμε σε μια άλλη κατσαρόλα νερό να βράσει">
+      <bpmn:incoming>Flow_1cwvm5k</bpmn:incoming>
+      <bpmn:outgoing>Flow_1c9ivd2</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Activity_1jhsnuf" name="Προσθέτουμε τα ζυμαρικά και αλάτι χοντρό στο νερό">
+      <bpmn:incoming>Flow_1c9ivd2</bpmn:incoming>
+      <bpmn:outgoing>Flow_0az78lw</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1c9ivd2" sourceRef="Activity_1ba5rgz" targetRef="Activity_1jhsnuf"/>
+    <bpmn:task id="Activity_1q0am8u" name="Αφήνουμε να βράσουν για 3' λιγότερο από όσο αναγράφεται στη συσκευασία">
+      <bpmn:incoming>Flow_0az78lw</bpmn:incoming>
+      <bpmn:incoming>Flow_0ii3tni</bpmn:incoming>
+      <bpmn:outgoing>Flow_07mdvez</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0az78lw" sourceRef="Activity_1jhsnuf" targetRef="Activity_1q0am8u"/>
+    <bpmn:exclusiveGateway id="Gateway_1uygyrg" name="Έβρασαν?">
+      <bpmn:incoming>Flow_07mdvez</bpmn:incoming>
+      <bpmn:outgoing>Flow_0hld4im</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0ii3tni</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_07mdvez" sourceRef="Activity_1q0am8u" targetRef="Gateway_1uygyrg"/>
+    <bpmn:task id="Activity_0rslci5" name="Τα στραγγίζουμε">
+      <bpmn:incoming>Flow_0hld4im</bpmn:incoming>
+      <bpmn:outgoing>Flow_081j0dl</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0hld4im" name="Ναι" sourceRef="Gateway_1uygyrg" targetRef="Activity_0rslci5"/>
+    <bpmn:sequenceFlow id="Flow_0ii3tni" name="Όχι" sourceRef="Gateway_1uygyrg" targetRef="Activity_1q0am8u"/>
+    <bpmn:sequenceFlow id="Flow_0wnxb8n" sourceRef="Activity_1yk2bfn" targetRef="Gateway_1vp4a9k"/>
+    <bpmn:parallelGateway id="Gateway_1vp4a9k">
+      <bpmn:incoming>Flow_0wnxb8n</bpmn:incoming>
+      <bpmn:incoming>Flow_081j0dl</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ptqd0i</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:sequenceFlow id="Flow_081j0dl" sourceRef="Activity_0rslci5" targetRef="Gateway_1vp4a9k"/>
+    <bpmn:task id="Activity_1da52af" name="Ανακατεύουμε">
+      <bpmn:incoming>Flow_1ptqd0i</bpmn:incoming>
+      <bpmn:outgoing>Flow_15tkqfe</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1ptqd0i" sourceRef="Gateway_1vp4a9k" targetRef="Activity_1da52af"/>
+    <bpmn:sequenceFlow id="Flow_15tkqfe" sourceRef="Activity_1da52af" targetRef="Gateway_0tepurp"/>
+    <bpmn:parallelGateway id="Gateway_0tepurp">
+      <bpmn:incoming>Flow_15tkqfe</bpmn:incoming>
+      <bpmn:incoming>Flow_1j871re</bpmn:incoming>
+      <bpmn:outgoing>Flow_05v5ies</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:task id="Activity_1hg6m6m" name="Ανακατεύουμε ώστε να γεμίσουν τα ζυμαρικά με τις σάλτσες">
+      <bpmn:incoming>Flow_05v5ies</bpmn:incoming>
+      <bpmn:outgoing>Flow_0000eu1</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_05v5ies" sourceRef="Gateway_0tepurp" targetRef="Activity_1hg6m6m"/>
+    <bpmn:task id="Activity_0xkmdjd" name="Τα αδειάζουμε σε βουτυρωμένο πυρίμαχο σκεύος και το στρώνουμε ομοιόμορφα">
+      <bpmn:incoming>Flow_0000eu1</bpmn:incoming>
+      <bpmn:outgoing>Flow_1mvklbb</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0000eu1" sourceRef="Activity_1hg6m6m" targetRef="Activity_0xkmdjd"/>
+    <bpmn:sequenceFlow id="Flow_1mvklbb" sourceRef="Activity_0xkmdjd" targetRef="Activity_08rupyy"/>
+    <bpmn:task id="Activity_08rupyy" name="Ανακατεύουμε με πιρούνι ελαφρά ώστε να μπει μέσα στο ζυμαρικό">
+      <bpmn:incoming>Flow_1mvklbb</bpmn:incoming>
+      <bpmn:outgoing>Flow_1stbw89</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Activity_1xjn6nk" name="Πασπαλίζουμε όλη την επιφάνεια με τις 3 κουταλιές κεφαλοτύρι">
+      <bpmn:incoming>Flow_1stbw89</bpmn:incoming>
+      <bpmn:outgoing>Flow_0wz8lzg</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1stbw89" sourceRef="Activity_08rupyy" targetRef="Activity_1xjn6nk"/>
+    <bpmn:task id="Activity_1w1yebe" name="Ψήνουμε σε προθερμασμένο φούρνο στον αέρα στους 180-200 ºC">
+      <bpmn:incoming>Flow_0wz8lzg</bpmn:incoming>
+      <bpmn:outgoing>Flow_0hfmdry</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0wz8lzg" sourceRef="Activity_1xjn6nk" targetRef="Activity_1w1yebe"/>
+    <bpmn:sequenceFlow id="Flow_0hfmdry" sourceRef="Activity_1w1yebe" targetRef="Event_1yj2ip7"/>
+    <bpmn:intermediateCatchEvent id="Event_1yj2ip7" name="30'">
+      <bpmn:incoming>Flow_0hfmdry</bpmn:incoming>
+      <bpmn:outgoing>Flow_0fhspmb</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_1j97do2"/>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:task id="Activity_165kvm3" name="Το αφήνουμε να ροδίσει">
+      <bpmn:incoming>Flow_0fhspmb</bpmn:incoming>
+      <bpmn:incoming>Flow_1ra5df5</bpmn:incoming>
+      <bpmn:outgoing>Flow_1xubnw5</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0fhspmb" sourceRef="Event_1yj2ip7" targetRef="Activity_165kvm3"/>
+    <bpmn:exclusiveGateway id="Gateway_1v0atc2" name="Πήρε χρώμα?">
+      <bpmn:incoming>Flow_1xubnw5</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ju3n50</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1ra5df5</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1xubnw5" sourceRef="Activity_165kvm3" targetRef="Gateway_1v0atc2"/>
+    <bpmn:task id="Activity_1akwmz4" name="Το αφήνουμε να ξεκουραστεί">
+      <bpmn:incoming>Flow_0ju3n50</bpmn:incoming>
+      <bpmn:outgoing>Flow_13j38o0</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0ju3n50" name="Ναι" sourceRef="Gateway_1v0atc2" targetRef="Activity_1akwmz4"/>
+    <bpmn:sequenceFlow id="Flow_1ra5df5" name="Όχι" sourceRef="Gateway_1v0atc2" targetRef="Activity_165kvm3"/>
+    <bpmn:sequenceFlow id="Flow_13j38o0" sourceRef="Activity_1akwmz4" targetRef="Event_1ie30hi"/>
+    <bpmn:intermediateCatchEvent id="Event_1ie30hi" name="10'">
+      <bpmn:incoming>Flow_13j38o0</bpmn:incoming>
+      <bpmn:outgoing>Flow_0bgqszm</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_07cqf6v"/>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:task id="Activity_0f2sdgp" name="Σερβίρουμε το παστίτσιο ζεστό με σπάτουλα">
+      <bpmn:incoming>Flow_0bgqszm</bpmn:incoming>
+      <bpmn:outgoing>Flow_16eh603</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0bgqszm" sourceRef="Event_1ie30hi" targetRef="Activity_0f2sdgp"/>
+    <bpmn:sequenceFlow id="Flow_16eh603" sourceRef="Activity_0f2sdgp" targetRef="Event_1dgw865"/>
+    <bpmn:intermediateCatchEvent id="Event_1dgw865" name="5'">
+      <bpmn:incoming>Flow_16eh603</bpmn:incoming>
+      <bpmn:outgoing>Flow_1oihq1f</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_1jx0vpk"/>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:endEvent id="Event_0r8b9b8" name="END">
+      <bpmn:incoming>Flow_1oihq1f</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1oihq1f" sourceRef="Event_1dgw865" targetRef="Event_0r8b9b8"/>
+    <bpmn:sequenceFlow id="Flow_0jmzy02" sourceRef="StartEvent_03f8de0" targetRef="Activity_0q181i7"/>
+    <bpmn:sequenceFlow id="Flow_1onz5ln" sourceRef="StartEvent_03f8de0" targetRef="Activity_1ehycuv"/>
+    <bpmn:sequenceFlow id="Flow_1cwvm5k" sourceRef="StartEvent_03f8de0" targetRef="Activity_1ba5rgz"/>
+    <bpmn:sequenceFlow id="Flow_1j871re" sourceRef="Activity_1kadmbq" targetRef="Gateway_0tepurp"/>
+    <bpmn:textAnnotation id="TextAnnotation_10ddt84">
+      <bpmn:text>μπέικον, σκόρδο,  κρεμμύδι, καρότο και σέλερυ</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1cauf2l" sourceRef="Activity_0q181i7" targetRef="TextAnnotation_10ddt84"/>
+    <bpmn:textAnnotation id="TextAnnotation_0e7zyux">
+      <bpmn:text>Προετοιμασία Κιμά</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0uqnl1v" sourceRef="Activity_0q181i7" targetRef="TextAnnotation_0e7zyux"/>
+    <bpmn:textAnnotation id="TextAnnotation_0yew17g">
+      <bpmn:text>Προετοιμασία Μπεσαμέλ</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_12upvrd" sourceRef="Activity_1ehycuv" targetRef="TextAnnotation_0yew17g"/>
+    <bpmn:textAnnotation id="TextAnnotation_0ufcxaw">
+      <bpmn:text>Προετοιμασία Ζυμαρικών</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_06f65vb" sourceRef="Activity_1ba5rgz" targetRef="TextAnnotation_0ufcxaw"/>
+    <bpmn:textAnnotation id="TextAnnotation_12bcnuy">
+      <bpmn:text>Στη μεσαία σχάρα μέχρι να κάνει ελαφριά κρούστα η επιφάνεια</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1aymewn" sourceRef="Activity_1w1yebe" targetRef="TextAnnotation_12bcnuy"/>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_0e84fab">
+      <bpmndi:BPMNEdge id="Flow_1j871re_di" bpmnElement="Flow_1j871re">
+        <di:waypoint x="1680" y="450"/>
+        <di:waypoint x="2250" y="450"/>
+        <di:waypoint x="2250" y="735"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2317" y="483" width="86" height="27"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1cwvm5k_di" bpmnElement="Flow_1cwvm5k">
+        <di:waypoint x="190" y="468"/>
+        <di:waypoint x="190" y="640"/>
+        <di:waypoint x="330" y="640"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1onz5ln_di" bpmnElement="Flow_1onz5ln">
+        <di:waypoint x="208" y="450"/>
+        <di:waypoint x="330" y="450"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jmzy02_di" bpmnElement="Flow_0jmzy02">
+        <di:waypoint x="190" y="432"/>
+        <di:waypoint x="190" y="250"/>
+        <di:waypoint x="330" y="250"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1oihq1f_di" bpmnElement="Flow_1oihq1f">
+        <di:waypoint x="512" y="760"/>
+        <di:waypoint x="198" y="760"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_16eh603_di" bpmnElement="Flow_16eh603">
+        <di:waypoint x="590" y="760"/>
+        <di:waypoint x="548" y="760"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0bgqszm_di" bpmnElement="Flow_0bgqszm">
+        <di:waypoint x="732" y="760"/>
+        <di:waypoint x="690" y="760"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13j38o0_di" bpmnElement="Flow_13j38o0">
+        <di:waypoint x="800" y="760"/>
+        <di:waypoint x="768" y="760"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ra5df5_di" bpmnElement="Flow_1ra5df5">
+        <di:waypoint x="980" y="785"/>
+        <di:waypoint x="980" y="840"/>
+        <di:waypoint x="1100" y="840"/>
+        <di:waypoint x="1100" y="800"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1032" y="822" width="16" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ju3n50_di" bpmnElement="Flow_0ju3n50">
+        <di:waypoint x="955" y="760"/>
+        <di:waypoint x="900" y="760"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="919" y="742" width="17" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xubnw5_di" bpmnElement="Flow_1xubnw5">
+        <di:waypoint x="1050" y="760"/>
+        <di:waypoint x="1005" y="760"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0fhspmb_di" bpmnElement="Flow_0fhspmb">
+        <di:waypoint x="1202" y="760"/>
+        <di:waypoint x="1150" y="760"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0hfmdry_di" bpmnElement="Flow_0hfmdry">
+        <di:waypoint x="1280" y="760"/>
+        <di:waypoint x="1238" y="760"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wz8lzg_di" bpmnElement="Flow_0wz8lzg">
+        <di:waypoint x="1440" y="760"/>
+        <di:waypoint x="1380" y="760"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1stbw89_di" bpmnElement="Flow_1stbw89">
+        <di:waypoint x="1640" y="760"/>
+        <di:waypoint x="1540" y="760"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1mvklbb_di" bpmnElement="Flow_1mvklbb">
+        <di:waypoint x="1850" y="760"/>
+        <di:waypoint x="1740" y="760"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0000eu1_di" bpmnElement="Flow_0000eu1">
+        <di:waypoint x="2050" y="760"/>
+        <di:waypoint x="1950" y="760"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05v5ies_di" bpmnElement="Flow_05v5ies">
+        <di:waypoint x="2225" y="760"/>
+        <di:waypoint x="2150" y="760"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15tkqfe_di" bpmnElement="Flow_15tkqfe">
+        <di:waypoint x="2390" y="760"/>
+        <di:waypoint x="2275" y="760"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ptqd0i_di" bpmnElement="Flow_1ptqd0i">
+        <di:waypoint x="2440" y="665"/>
+        <di:waypoint x="2440" y="720"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_081j0dl_di" bpmnElement="Flow_081j0dl">
+        <di:waypoint x="990" y="640"/>
+        <di:waypoint x="2415" y="640"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wnxb8n_di" bpmnElement="Flow_0wnxb8n">
+        <di:waypoint x="2440" y="580"/>
+        <di:waypoint x="2440" y="615"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ii3tni_di" bpmnElement="Flow_0ii3tni">
+        <di:waypoint x="810" y="615"/>
+        <di:waypoint x="810" y="570"/>
+        <di:waypoint x="680" y="570"/>
+        <di:waypoint x="680" y="600"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="737" y="552" width="16" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0hld4im_di" bpmnElement="Flow_0hld4im">
+        <di:waypoint x="835" y="640"/>
+        <di:waypoint x="890" y="640"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="854" y="622" width="17" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07mdvez_di" bpmnElement="Flow_07mdvez">
+        <di:waypoint x="730" y="640"/>
+        <di:waypoint x="785" y="640"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0az78lw_di" bpmnElement="Flow_0az78lw">
+        <di:waypoint x="580" y="640"/>
+        <di:waypoint x="630" y="640"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1c9ivd2_di" bpmnElement="Flow_1c9ivd2">
+        <di:waypoint x="430" y="640"/>
+        <di:waypoint x="480" y="640"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0cw7yzo_di" bpmnElement="Flow_0cw7yzo">
+        <di:waypoint x="1510" y="450"/>
+        <di:waypoint x="1580" y="450"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09ovx13_di" bpmnElement="Flow_09ovx13">
+        <di:waypoint x="1340" y="450"/>
+        <di:waypoint x="1410" y="450"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07v2xx8_di" bpmnElement="Flow_07v2xx8">
+        <di:waypoint x="1178" y="450"/>
+        <di:waypoint x="1240" y="450"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_16hezj7_di" bpmnElement="Flow_16hezj7">
+        <di:waypoint x="1080" y="450"/>
+        <di:waypoint x="1142" y="450"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1t9m56k_di" bpmnElement="Flow_1t9m56k">
+        <di:waypoint x="900" y="475"/>
+        <di:waypoint x="900" y="520"/>
+        <di:waypoint x="770" y="520"/>
+        <di:waypoint x="770" y="490"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="827" y="502" width="16" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06dcwer_di" bpmnElement="Flow_06dcwer">
+        <di:waypoint x="925" y="450"/>
+        <di:waypoint x="980" y="450"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="944" y="432" width="17" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vjvslf_di" bpmnElement="Flow_1vjvslf">
+        <di:waypoint x="820" y="450"/>
+        <di:waypoint x="875" y="450"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0on79tk_di" bpmnElement="Flow_0on79tk">
+        <di:waypoint x="668" y="450"/>
+        <di:waypoint x="720" y="450"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ch80e9_di" bpmnElement="Flow_0ch80e9">
+        <di:waypoint x="580" y="450"/>
+        <di:waypoint x="632" y="450"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0973xoj_di" bpmnElement="Flow_0973xoj">
+        <di:waypoint x="430" y="450"/>
+        <di:waypoint x="480" y="450"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_00b3r8q_di" bpmnElement="Flow_00b3r8q">
+        <di:waypoint x="2260" y="160"/>
+        <di:waypoint x="2190" y="160"/>
+        <di:waypoint x="2190" y="210"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_00d0s6r_di" bpmnElement="Flow_00d0s6r">
+        <di:waypoint x="2240" y="250"/>
+        <di:waypoint x="2285" y="250"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15klkgm_di" bpmnElement="Flow_15klkgm">
+        <di:waypoint x="2110" y="250"/>
+        <di:waypoint x="2140" y="250"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06q1q0j_di" bpmnElement="Flow_06q1q0j">
+        <di:waypoint x="2310" y="225"/>
+        <di:waypoint x="2310" y="200"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2317" y="210" width="16" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ti6psm_di" bpmnElement="Flow_1ti6psm">
+        <di:waypoint x="2440" y="470"/>
+        <di:waypoint x="2440" y="500"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0cuxi8f_di" bpmnElement="Flow_0cuxi8f">
+        <di:waypoint x="2440" y="359"/>
+        <di:waypoint x="2440" y="390"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0n2k1nm_di" bpmnElement="Flow_0n2k1nm">
+        <di:waypoint x="2440" y="290"/>
+        <di:waypoint x="2440" y="323"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0dufeb4_di" bpmnElement="Flow_0dufeb4">
+        <di:waypoint x="2335" y="250"/>
+        <di:waypoint x="2390" y="250"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2354" y="232" width="17" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0fg0xfd_di" bpmnElement="Flow_0fg0xfd">
+        <di:waypoint x="1880" y="160"/>
+        <di:waypoint x="1800" y="160"/>
+        <di:waypoint x="1800" y="210"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0z1j1ts_di" bpmnElement="Flow_0z1j1ts">
+        <di:waypoint x="1930" y="225"/>
+        <di:waypoint x="1930" y="200"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1937" y="210" width="17" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0vtw9zu_di" bpmnElement="Flow_0vtw9zu">
+        <di:waypoint x="1955" y="250"/>
+        <di:waypoint x="2010" y="250"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1975" y="232" width="16" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0m2r1wh_di" bpmnElement="Flow_0m2r1wh">
+        <di:waypoint x="1850" y="250"/>
+        <di:waypoint x="1905" y="250"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0pd2tkg_di" bpmnElement="Flow_0pd2tkg">
+        <di:waypoint x="1698" y="250"/>
+        <di:waypoint x="1750" y="250"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1l13lus_di" bpmnElement="Flow_1l13lus">
+        <di:waypoint x="1610" y="250"/>
+        <di:waypoint x="1662" y="250"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0kygndc_di" bpmnElement="Flow_0kygndc">
+        <di:waypoint x="1460" y="250"/>
+        <di:waypoint x="1510" y="250"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1l5ayyr_di" bpmnElement="Flow_1l5ayyr">
+        <di:waypoint x="1310" y="250"/>
+        <di:waypoint x="1360" y="250"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_00osn3m_di" bpmnElement="Flow_00osn3m">
+        <di:waypoint x="1168" y="250"/>
+        <di:waypoint x="1210" y="250"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0yetp86_di" bpmnElement="Flow_0yetp86">
+        <di:waypoint x="1090" y="250"/>
+        <di:waypoint x="1132" y="250"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0v6zrn2_di" bpmnElement="Flow_0v6zrn2">
+        <di:waypoint x="948" y="250"/>
+        <di:waypoint x="990" y="250"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0yhnqsr_di" bpmnElement="Flow_0yhnqsr">
+        <di:waypoint x="870" y="250"/>
+        <di:waypoint x="912" y="250"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1chc917_di" bpmnElement="Flow_1chc917">
+        <di:waypoint x="730" y="250"/>
+        <di:waypoint x="770" y="250"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1lxgpy0_di" bpmnElement="Flow_1lxgpy0">
+        <di:waypoint x="580" y="250"/>
+        <di:waypoint x="630" y="250"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_178dume_di" bpmnElement="Flow_178dume">
+        <di:waypoint x="430" y="250"/>
+        <di:waypoint x="480" y="250"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_03f8de0">
+        <dc:Bounds x="172" y="432" width="36" height="36"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="132" y="443" width="36" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0q181i7_di" bpmnElement="Activity_0q181i7">
+        <dc:Bounds x="330" y="210" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0vu1mct_di" bpmnElement="Activity_0vu1mct">
+        <dc:Bounds x="480" y="210" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1pz9z7z_di" bpmnElement="Activity_1pz9z7z">
+        <dc:Bounds x="770" y="210" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_085fw0j_di" bpmnElement="Activity_085fw0j">
+        <dc:Bounds x="630" y="210" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1ga7ntf_di" bpmnElement="Event_1q58pe0">
+        <dc:Bounds x="912" y="232" width="36" height="36"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="926" y="275" width="9" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_045zb0n_di" bpmnElement="Activity_045zb0n">
+        <dc:Bounds x="990" y="210" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_09986cc_di" bpmnElement="Event_0k13lqt">
+        <dc:Bounds x="1132" y="232" width="36" height="36"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1146" y="275" width="9" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0vvoaem_di" bpmnElement="Activity_0vvoaem">
+        <dc:Bounds x="1210" y="210" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0v69pcs_di" bpmnElement="Activity_0v69pcs">
+        <dc:Bounds x="1360" y="210" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0omtkzn_di" bpmnElement="Activity_0omtkzn">
+        <dc:Bounds x="1510" y="210" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1dy0dr8_di" bpmnElement="Event_1c76fwr">
+        <dc:Bounds x="1662" y="232" width="36" height="36"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1673" y="275" width="15" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1hjadwq_di" bpmnElement="Activity_1hjadwq">
+        <dc:Bounds x="1750" y="210" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0y9qri4_di" bpmnElement="Gateway_0y9qri4" isMarkerVisible="true">
+        <dc:Bounds x="1905" y="225" width="50" height="50"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1901" y="285" width="57" height="27"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_11py707_di" bpmnElement="Activity_11py707">
+        <dc:Bounds x="2010" y="210" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0h3g05o_di" bpmnElement="Activity_0h3g05o">
+        <dc:Bounds x="1880" y="120" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0iz1fpn_di" bpmnElement="Gateway_0iz1fpn" isMarkerVisible="true">
+        <dc:Bounds x="2285" y="225" width="50" height="50"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2269" y="285" width="82" height="27"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0on0em2_di" bpmnElement="Activity_0on0em2">
+        <dc:Bounds x="2390" y="210" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1e3rx81_di" bpmnElement="Event_0lmbv92">
+        <dc:Bounds x="2422" y="323" width="36" height="36"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2402.5" y="334" width="9" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1anek17_di" bpmnElement="Activity_1anek17">
+        <dc:Bounds x="2390" y="390" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1yk2bfn_di" bpmnElement="Activity_1yk2bfn">
+        <dc:Bounds x="2390" y="500" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ttpf81_di" bpmnElement="Activity_1ttpf81">
+        <dc:Bounds x="2260" y="120" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0v6xhbn_di" bpmnElement="Activity_0v6xhbn">
+        <dc:Bounds x="2140" y="210" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ehycuv_di" bpmnElement="Activity_1ehycuv">
+        <dc:Bounds x="330" y="410" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ms0chv_di" bpmnElement="Activity_0ms0chv">
+        <dc:Bounds x="480" y="410" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1nvwhu1_di" bpmnElement="Event_0au78gl">
+        <dc:Bounds x="632" y="432" width="36" height="36"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="646" y="475" width="9" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1pkqj7w_di" bpmnElement="Activity_1pkqj7w">
+        <dc:Bounds x="720" y="410" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0hwrcwf_di" bpmnElement="Gateway_0hwrcwf" isMarkerVisible="true">
+        <dc:Bounds x="875" y="425" width="50" height="50"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="868" y="395" width="64" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0irdzbf_di" bpmnElement="Activity_0irdzbf">
+        <dc:Bounds x="980" y="410" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1qsaaq0_di" bpmnElement="Event_1b0m8xi">
+        <dc:Bounds x="1142" y="432" width="36" height="36"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1156" y="475" width="9" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1793qhx_di" bpmnElement="Activity_1793qhx">
+        <dc:Bounds x="1240" y="410" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_00i2zgt_di" bpmnElement="Activity_00i2zgt">
+        <dc:Bounds x="1410" y="410" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1kadmbq_di" bpmnElement="Activity_1kadmbq">
+        <dc:Bounds x="1580" y="410" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ba5rgz_di" bpmnElement="Activity_1ba5rgz">
+        <dc:Bounds x="330" y="600" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1jhsnuf_di" bpmnElement="Activity_1jhsnuf">
+        <dc:Bounds x="480" y="600" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1q0am8u_di" bpmnElement="Activity_1q0am8u">
+        <dc:Bounds x="630" y="600" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1uygyrg_di" bpmnElement="Gateway_1uygyrg" isMarkerVisible="true">
+        <dc:Bounds x="785" y="615" width="50" height="50"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="784" y="673" width="52" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0rslci5_di" bpmnElement="Activity_0rslci5">
+        <dc:Bounds x="890" y="600" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1cow3cf_di" bpmnElement="Gateway_1vp4a9k">
+        <dc:Bounds x="2415" y="615" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1da52af_di" bpmnElement="Activity_1da52af">
+        <dc:Bounds x="2390" y="720" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0mszm9v_di" bpmnElement="Gateway_0tepurp">
+        <dc:Bounds x="2225" y="735" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1hg6m6m_di" bpmnElement="Activity_1hg6m6m">
+        <dc:Bounds x="2050" y="720" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0xkmdjd_di" bpmnElement="Activity_0xkmdjd">
+        <dc:Bounds x="1850" y="720" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_08rupyy_di" bpmnElement="Activity_08rupyy">
+        <dc:Bounds x="1640" y="720" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1xjn6nk_di" bpmnElement="Activity_1xjn6nk">
+        <dc:Bounds x="1440" y="720" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1w1yebe_di" bpmnElement="Activity_1w1yebe">
+        <dc:Bounds x="1280" y="720" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_15vvl9e_di" bpmnElement="Event_1yj2ip7">
+        <dc:Bounds x="1202" y="742" width="36" height="36"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1213" y="785" width="15" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_165kvm3_di" bpmnElement="Activity_165kvm3">
+        <dc:Bounds x="1050" y="720" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1v0atc2_di" bpmnElement="Gateway_1v0atc2" isMarkerVisible="true">
+        <dc:Bounds x="955" y="735" width="50" height="50"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="946" y="713" width="68" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1akwmz4_di" bpmnElement="Activity_1akwmz4">
+        <dc:Bounds x="800" y="720" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_15u8g6c_di" bpmnElement="Event_1ie30hi">
+        <dc:Bounds x="732" y="742" width="36" height="36"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="743" y="785" width="15" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0f2sdgp_di" bpmnElement="Activity_0f2sdgp">
+        <dc:Bounds x="590" y="720" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1ci0nxi_di" bpmnElement="Event_1dgw865">
+        <dc:Bounds x="512" y="742" width="36" height="36"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="526" y="785" width="9" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0r8b9b8_di" bpmnElement="Event_0r8b9b8">
+        <dc:Bounds x="162" y="742" width="36" height="36"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="168" y="785" width="24" height="14"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_10ddt84_di" bpmnElement="TextAnnotation_10ddt84">
+        <dc:Bounds x="420" y="78" width="100" height="84"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0e7zyux_di" bpmnElement="TextAnnotation_0e7zyux">
+        <dc:Bounds x="270" y="121" width="100" height="41"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0yew17g_di" bpmnElement="TextAnnotation_0yew17g">
+        <dc:Bounds x="270" y="320" width="100" height="41"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0ufcxaw_di" bpmnElement="TextAnnotation_0ufcxaw">
+        <dc:Bounds x="270" y="530" width="100" height="41"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_12bcnuy_di" bpmnElement="TextAnnotation_12bcnuy">
+        <dc:Bounds x="1330" y="850" width="100" height="84"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1cauf2l_di" bpmnElement="Association_1cauf2l">
+        <di:waypoint x="403" y="210"/>
+        <di:waypoint x="430" y="162"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0uqnl1v_di" bpmnElement="Association_0uqnl1v">
+        <di:waypoint x="359" y="210"/>
+        <di:waypoint x="334" y="162"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_12upvrd_di" bpmnElement="Association_12upvrd">
+        <di:waypoint x="359" y="410"/>
+        <di:waypoint x="334" y="361"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_06f65vb_di" bpmnElement="Association_06f65vb">
+        <di:waypoint x="355" y="600"/>
+        <di:waypoint x="336" y="571"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1aymewn_di" bpmnElement="Association_1aymewn">
+        <di:waypoint x="1349" y="800"/>
+        <di:waypoint x="1373" y="850"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+<qbpapi:Results xmlns:qbpapi="http://www.qbp-simulator.com/ApiSchema201212"><qbpapi:Results version="1.4"><qbpapi:process><qbpapi:minCycleTime>620420</qbpapi:minCycleTime><qbpapi:averageCycleTime>817629.2</qbpapi:averageCycleTime><qbpapi:maxCycleTime>961940</qbpapi:maxCycleTime><qbpapi:totalCycleTime>953300</qbpapi:totalCycleTime><qbpapi:minCost>8.42222222222222</qbpapi:minCost><qbpapi:averageCost>10.413111111111107</qbpapi:averageCost><qbpapi:maxCost>20.311111111111103</qbpapi:maxCost><qbpapi:totalCost>1041.3111111111107</qbpapi:totalCost><qbpapi:minDuration>156430</qbpapi:minDuration><qbpapi:averageDuration>212758.8</qbpapi:averageDuration><qbpapi:maxDuration>268340</qbpapi:maxDuration><qbpapi:processInstances>100</qbpapi:processInstances></qbpapi:process><qbpapi:elements><qbpapi:element id="Process_0e84fab.Event_0k13lqt" name="1'"><qbpapi:duration><qbpapi:min>60</qbpapi:min><qbpapi:max>60</qbpapi:max><qbpapi:average>60</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Event_1ie30hi" name="10'"><qbpapi:duration><qbpapi:min>600</qbpapi:min><qbpapi:max>600</qbpapi:max><qbpapi:average>600</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Event_1yj2ip7" name="30'"><qbpapi:duration><qbpapi:min>1800</qbpapi:min><qbpapi:max>1800</qbpapi:max><qbpapi:average>1800</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Event_1c76fwr" name="30'"><qbpapi:duration><qbpapi:min>1800</qbpapi:min><qbpapi:max>1800</qbpapi:max><qbpapi:average>1800</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Event_1q58pe0" name="4'"><qbpapi:duration><qbpapi:min>240</qbpapi:min><qbpapi:max>240</qbpapi:max><qbpapi:average>240</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Event_0au78gl" name="5'"><qbpapi:duration><qbpapi:min>300</qbpapi:min><qbpapi:max>300</qbpapi:max><qbpapi:average>300</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Event_1dgw865" name="5'"><qbpapi:duration><qbpapi:min>300</qbpapi:min><qbpapi:max>300</qbpapi:max><qbpapi:average>300</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Event_1b0m8xi" name="5'"><qbpapi:duration><qbpapi:min>300</qbpapi:min><qbpapi:max>300</qbpapi:max><qbpapi:average>300</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Event_0lmbv92" name="5'"><qbpapi:duration><qbpapi:min>300</qbpapi:min><qbpapi:max>300</qbpapi:max><qbpapi:average>300</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Event_0r8b9b8" name="END"><qbpapi:duration><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Gateway_1vp4a9k" name="GATEWAY 39 AND"><qbpapi:duration><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Gateway_0tepurp" name="GATEWAY 41 AND"><qbpapi:duration><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.StartEvent_03f8de0" name="START"><qbpapi:duration><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Gateway_1uygyrg" name="Έβρασαν?"><qbpapi:duration><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>220</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_1da52af" name="Ανακατεύουμε"><qbpapi:duration><qbpapi:min>3410</qbpapi:min><qbpapi:max>28410</qbpapi:max><qbpapi:average>17878.2</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.13333333333333333</qbpapi:min><qbpapi:max>0.13333333333333333</qbpapi:max><qbpapi:average>0.13333333333333325</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>3350</qbpapi:min><qbpapi:max>28350</qbpapi:max><qbpapi:average>17818.2</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>230400</qbpapi:max><qbpapi:average>65664</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_08rupyy" name="Ανακατεύουμε με πιρούνι ελαφρά ώστε να μπει μέσα στο ζυμαρικό"><qbpapi:duration><qbpapi:min>5730</qbpapi:min><qbpapi:max>28320</qbpapi:max><qbpapi:average>12081.8</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.06666666666666667</qbpapi:min><qbpapi:max>0.06666666666666667</qbpapi:max><qbpapi:average>0.06666666666666662</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>5700</qbpapi:min><qbpapi:max>28290</qbpapi:max><qbpapi:average>12051.8</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>230400</qbpapi:max><qbpapi:average>35136</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_00i2zgt" name="Ανακατεύουμε με το σύρμα ώστε να ομογενοποιηθεί η κρέμα."><qbpapi:duration><qbpapi:min>300</qbpapi:min><qbpapi:max>6840</qbpapi:max><qbpapi:average>4006.5</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.26666666666666666</qbpapi:min><qbpapi:max>0.26666666666666666</qbpapi:max><qbpapi:average>0.2666666666666665</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>180</qbpapi:min><qbpapi:max>6720</qbpapi:max><qbpapi:average>3886.5</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>9792</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_0ms0chv" name="Ανακατεύουμε τακτικά σε μέτρια προς δυνατή φωτιά"><qbpapi:duration><qbpapi:min>60</qbpapi:min><qbpapi:max>6780</qbpapi:max><qbpapi:average>3579.3</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.13333333333333333</qbpapi:min><qbpapi:max>0.13333333333333333</qbpapi:max><qbpapi:average>0.13333333333333325</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>6720</qbpapi:max><qbpapi:average>3519.3</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>8064</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_1hg6m6m" name="Ανακατεύουμε ώστε να γεμίσουν τα ζυμαρικά με τις σάλτσες"><qbpapi:duration><qbpapi:min>5610</qbpapi:min><qbpapi:max>28470</qbpapi:max><qbpapi:average>15711.4</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.26666666666666666</qbpapi:min><qbpapi:max>0.26666666666666666</qbpapi:max><qbpapi:average>0.2666666666666665</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>5490</qbpapi:min><qbpapi:max>28350</qbpapi:max><qbpapi:average>15591.4</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>230400</qbpapi:max><qbpapi:average>55296</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_0irdzbf" name="Αποσύρουμε από τη φωτιά και αφήνουμε να κρυώσει"><qbpapi:duration><qbpapi:min>90</qbpapi:min><qbpapi:max>6690</qbpapi:max><qbpapi:average>4122.9</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.06666666666666667</qbpapi:min><qbpapi:max>0.06666666666666667</qbpapi:max><qbpapi:average>0.06666666666666662</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>60</qbpapi:min><qbpapi:max>6660</qbpapi:max><qbpapi:average>4092.9</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>9792</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_1yk2bfn" name="Αποσύρουμε από τη φωτιά και το αφήνουμε στην άκρη"><qbpapi:duration><qbpapi:min>20</qbpapi:min><qbpapi:max>4740</qbpapi:max><qbpapi:average>1816.5</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.044444444444444446</qbpapi:min><qbpapi:max>0.044444444444444446</qbpapi:max><qbpapi:average>0.04444444444444437</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>4720</qbpapi:max><qbpapi:average>1796.5</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>3456</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_1pkqj7w" name="Αφήνουμε να βράσει"><qbpapi:duration><qbpapi:min>120</qbpapi:min><qbpapi:max>6840</qbpapi:max><qbpapi:average>3780.918367346939</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.26666666666666666</qbpapi:min><qbpapi:max>0.26666666666666666</qbpapi:max><qbpapi:average>0.2666666666666661</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>6720</qbpapi:max><qbpapi:average>3660.918367346939</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>6171.428571428572</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>196</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_1q0am8u" name="Αφήνουμε να βράσουν για 3' λιγότερο από όσο αναγράφεται στη συσκευασία"><qbpapi:duration><qbpapi:min>480</qbpapi:min><qbpapi:max>28410</qbpapi:max><qbpapi:average>19665.545454545456</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>1.0666666666666667</qbpapi:min><qbpapi:max>1.0666666666666667</qbpapi:max><qbpapi:average>1.0666666666666642</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>27930</qbpapi:max><qbpapi:average>19185.545454545456</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>230400</qbpapi:max><qbpapi:average>56552.72727272727</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>220</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_0on0em2" name="Αφήνουμε τα μυρωδικά να αρωματίσουν"><qbpapi:duration><qbpapi:min>200</qbpapi:min><qbpapi:max>4680</qbpapi:max><qbpapi:average>2061.7</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.13333333333333333</qbpapi:min><qbpapi:max>0.13333333333333333</qbpapi:max><qbpapi:average>0.13333333333333325</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>140</qbpapi:min><qbpapi:max>4620</qbpapi:max><qbpapi:average>2001.7</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>4032</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_1anek17" name="Αφαιρούμε τα μυρωδικά"><qbpapi:duration><qbpapi:min>20</qbpapi:min><qbpapi:max>4610</qbpapi:max><qbpapi:average>1903.7</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.044444444444444446</qbpapi:min><qbpapi:max>0.044444444444444446</qbpapi:max><qbpapi:average>0.04444444444444437</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>4590</qbpapi:max><qbpapi:average>1883.7</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>4607.6</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_1ba5rgz" name="Βάζουμε σε μια άλλη κατσαρόλα νερό να βράσει"><qbpapi:duration><qbpapi:min>420</qbpapi:min><qbpapi:max>27480</qbpapi:max><qbpapi:average>13731.1</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.9333333333333333</qbpapi:min><qbpapi:max>0.9333333333333333</qbpapi:max><qbpapi:average>0.9333333333333335</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>27060</qbpapi:max><qbpapi:average>13311.1</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>27648</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_0q181i7" name="Βάζουμε στο μπλέντερ τα παραπάνω υλικά και τα ψιλοκόβουμε"><qbpapi:duration><qbpapi:min>120</qbpapi:min><qbpapi:max>4660</qbpapi:max><qbpapi:average>2331.5</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.26666666666666666</qbpapi:min><qbpapi:max>0.26666666666666666</qbpapi:max><qbpapi:average>0.2666666666666665</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>4540</qbpapi:max><qbpapi:average>2211.5</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>6336</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_1ehycuv" name="Βάζουμε όλα τα υλικά κρύα  (εκτός από τα αυγά) στην κατσαρόλα"><qbpapi:duration><qbpapi:min>180</qbpapi:min><qbpapi:max>6660</qbpapi:max><qbpapi:average>3449.4</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.4</qbpapi:min><qbpapi:max>0.4</qbpapi:max><qbpapi:average>0.39999999999999925</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>6480</qbpapi:max><qbpapi:average>3269.4</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>8640</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Gateway_0hwrcwf" name="Είναι έτοιμη?"><qbpapi:duration><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>196</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Gateway_0iz1fpn" name="Είναι ζουμερός ο κιμάς?"><qbpapi:duration><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>205</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_1hjadwq" name="Ελέγχουμε αν είναι ζουμερός και μελωμένος ο κιμάς"><qbpapi:duration><qbpapi:min>80</qbpapi:min><qbpapi:max>4730</qbpapi:max><qbpapi:average>2497.52688172043</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.13333333333333333</qbpapi:min><qbpapi:max>0.13333333333333333</qbpapi:max><qbpapi:average>0.13333333333333308</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>20</qbpapi:min><qbpapi:max>4670</qbpapi:max><qbpapi:average>2437.52688172043</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>8315.161290322581</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>186</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_0v6xhbn" name="Ελέγχουμε ξανά αν είναι μελωμένος ο κιμάς"><qbpapi:duration><qbpapi:min>260</qbpapi:min><qbpapi:max>4690</qbpapi:max><qbpapi:average>2252.390243902439</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.044444444444444446</qbpapi:min><qbpapi:max>0.044444444444444446</qbpapi:max><qbpapi:average>0.04444444444444433</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>240</qbpapi:min><qbpapi:max>4670</qbpapi:max><qbpapi:average>2232.390243902439</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>4495.609756097561</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>205</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_0vu1mct" name="Ζεσταίνουμε το ελαιόλαδο σε κατσαρόλα"><qbpapi:duration><qbpapi:min>120</qbpapi:min><qbpapi:max>4760</qbpapi:max><qbpapi:average>2475.3</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.26666666666666666</qbpapi:min><qbpapi:max>0.26666666666666666</qbpapi:max><qbpapi:average>0.2666666666666665</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>4640</qbpapi:max><qbpapi:average>2355.3</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>5760</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Gateway_1v0atc2" name="Πήρε χρώμα?"><qbpapi:duration><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>204</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_1xjn6nk" name="Πασπαλίζουμε όλη την επιφάνεια με τις 3 κουταλιές κεφαλοτύρι"><qbpapi:duration><qbpapi:min>5640</qbpapi:min><qbpapi:max>27880</qbpapi:max><qbpapi:average>10910.2</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.06666666666666667</qbpapi:min><qbpapi:max>0.06666666666666667</qbpapi:max><qbpapi:average>0.06666666666666662</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>5610</qbpapi:min><qbpapi:max>27850</qbpapi:max><qbpapi:average>10880.2</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>230400</qbpapi:max><qbpapi:average>27648</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_1ttpf81" name="Προσθέτουμε λίγο ζεστό νερό ή ζωμό"><qbpapi:duration><qbpapi:min>170</qbpapi:min><qbpapi:max>4750</qbpapi:max><qbpapi:average>2226.285714285714</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.06666666666666667</qbpapi:min><qbpapi:max>0.06666666666666667</qbpapi:max><qbpapi:average>0.06666666666666661</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>140</qbpapi:min><qbpapi:max>4720</qbpapi:max><qbpapi:average>2196.285714285714</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>6034.285714285715</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>105</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_0h3g05o" name="Προσθέτουμε λίγο νερό"><qbpapi:duration><qbpapi:min>290</qbpapi:min><qbpapi:max>4720</qbpapi:max><qbpapi:average>2424.4186046511627</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.06666666666666667</qbpapi:min><qbpapi:max>0.06666666666666667</qbpapi:max><qbpapi:average>0.06666666666666665</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>260</qbpapi:min><qbpapi:max>4690</qbpapi:max><qbpapi:average>2394.4186046511627</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>6027.906976744186</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>86</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_1jhsnuf" name="Προσθέτουμε τα ζυμαρικά και αλάτι χοντρό στο νερό"><qbpapi:duration><qbpapi:min>20</qbpapi:min><qbpapi:max>27310</qbpapi:max><qbpapi:average>16806.1</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.044444444444444446</qbpapi:min><qbpapi:max>0.044444444444444446</qbpapi:max><qbpapi:average>0.04444444444444437</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>27290</qbpapi:max><qbpapi:average>16786.1</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>34560</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_1793qhx" name="Προσθέτουμε τα χτυπημένα αυγά και το κεφαλοτύρι"><qbpapi:duration><qbpapi:min>150</qbpapi:min><qbpapi:max>6720</qbpapi:max><qbpapi:average>4020.9</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.06666666666666667</qbpapi:min><qbpapi:max>0.06666666666666667</qbpapi:max><qbpapi:average>0.06666666666666662</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>120</qbpapi:min><qbpapi:max>6690</qbpapi:max><qbpapi:average>3990.9</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>6336</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_0v69pcs" name="Προσθέτουμε τις ντομάτες και 1/2 φλιτζάνι ζεστό νερό"><qbpapi:duration><qbpapi:min>60</qbpapi:min><qbpapi:max>4660</qbpapi:max><qbpapi:average>2677.2</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.13333333333333333</qbpapi:min><qbpapi:max>0.13333333333333333</qbpapi:max><qbpapi:average>0.13333333333333325</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>4600</qbpapi:max><qbpapi:average>2617.2</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>3456</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_085fw0j" name="Προσθέτουμε τον κιμά"><qbpapi:duration><qbpapi:min>20</qbpapi:min><qbpapi:max>4650</qbpapi:max><qbpapi:average>2507.7</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.044444444444444446</qbpapi:min><qbpapi:max>0.044444444444444446</qbpapi:max><qbpapi:average>0.04444444444444437</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>4630</qbpapi:max><qbpapi:average>2487.7</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>5184</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_045zb0n" name="Προσθέτουμε τον πελτέ, τον ανακατεύουμε και αφήνουμε να ψηθεί"><qbpapi:duration><qbpapi:min>60</qbpapi:min><qbpapi:max>4710</qbpapi:max><qbpapi:average>2642.7</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.13333333333333333</qbpapi:min><qbpapi:max>0.13333333333333333</qbpapi:max><qbpapi:average>0.13333333333333325</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>4650</qbpapi:max><qbpapi:average>2582.7</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>4032</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_1pz9z7z" name="Προσθέτουμε όλα τα υπόλοιπα υλικά και ανακατεύουμε"><qbpapi:duration><qbpapi:min>60</qbpapi:min><qbpapi:max>4710</qbpapi:max><qbpapi:average>2603.1</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.13333333333333333</qbpapi:min><qbpapi:max>0.13333333333333333</qbpapi:max><qbpapi:average>0.13333333333333325</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>4650</qbpapi:max><qbpapi:average>2543.1</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>5184</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_0vvoaem" name="Σβήνουμε με το κονιάκ και αφήνουμε να εξατμιστεί"><qbpapi:duration><qbpapi:min>140</qbpapi:min><qbpapi:max>4690</qbpapi:max><qbpapi:average>2727.4</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.26666666666666666</qbpapi:min><qbpapi:max>0.26666666666666666</qbpapi:max><qbpapi:average>0.2666666666666665</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>20</qbpapi:min><qbpapi:max>4570</qbpapi:max><qbpapi:average>2607.4</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>4607.7</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_0f2sdgp" name="Σερβίρουμε το παστίτσιο ζεστό με σπάτουλα"><qbpapi:duration><qbpapi:min>180</qbpapi:min><qbpapi:max>18540</qbpapi:max><qbpapi:average>8749.7</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.4</qbpapi:min><qbpapi:max>0.4</qbpapi:max><qbpapi:average>0.39999999999999925</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>18360</qbpapi:max><qbpapi:average>8569.7</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>230400</qbpapi:max><qbpapi:average>19579.9</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_0omtkzn" name="Σκεπάζουμε την κατσαρόλα, χαμηλώνουμε τη φωτιά και σιγοβράζουμε"><qbpapi:duration><qbpapi:min>60</qbpapi:min><qbpapi:max>4740</qbpapi:max><qbpapi:average>2665.3</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.13333333333333333</qbpapi:min><qbpapi:max>0.13333333333333333</qbpapi:max><qbpapi:average>0.13333333333333325</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>4680</qbpapi:max><qbpapi:average>2605.3</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>3456</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Gateway_0y9qri4" name="Στέγνωσε ο κιμάς?"><qbpapi:duration><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>186</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_11py707" name="Συνεχίζουμε και ρίχνουμε δαφνόφυλλο, κανέλα και αλατοπίπερο"><qbpapi:duration><qbpapi:min>220</qbpapi:min><qbpapi:max>4640</qbpapi:max><qbpapi:average>2424.9</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.08888888888888889</qbpapi:min><qbpapi:max>0.08888888888888889</qbpapi:max><qbpapi:average>0.08888888888888874</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>180</qbpapi:min><qbpapi:max>4600</qbpapi:max><qbpapi:average>2384.9</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>7488</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_0xkmdjd" name="Τα αδειάζουμε σε βουτυρωμένο πυρίμαχο σκεύος και το στρώνουμε ομοιόμορφα"><qbpapi:duration><qbpapi:min>5790</qbpapi:min><qbpapi:max>27960</qbpapi:max><qbpapi:average>13756.6</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.26666666666666666</qbpapi:min><qbpapi:max>0.26666666666666666</qbpapi:max><qbpapi:average>0.2666666666666665</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>5670</qbpapi:min><qbpapi:max>27840</qbpapi:max><qbpapi:average>13636.6</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>230400</qbpapi:max><qbpapi:average>35136</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_0rslci5" name="Τα στραγγίζουμε"><qbpapi:duration><qbpapi:min>540</qbpapi:min><qbpapi:max>28040</qbpapi:max><qbpapi:average>19171.7</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.26666666666666666</qbpapi:min><qbpapi:max>0.26666666666666666</qbpapi:max><qbpapi:average>0.2666666666666665</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>420</qbpapi:min><qbpapi:max>27920</qbpapi:max><qbpapi:average>19051.7</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>230400</qbpapi:max><qbpapi:average>76608</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_1akwmz4" name="Το αφήνουμε να ξεκουραστεί"><qbpapi:duration><qbpapi:min>480</qbpapi:min><qbpapi:max>27600</qbpapi:max><qbpapi:average>9810.3</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.6666666666666666</qbpapi:min><qbpapi:max>0.6666666666666666</qbpapi:max><qbpapi:average>0.6666666666666659</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>180</qbpapi:min><qbpapi:max>27300</qbpapi:max><qbpapi:average>9510.3</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>230400</qbpapi:max><qbpapi:average>25344</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_165kvm3" name="Το αφήνουμε να ροδίσει"><qbpapi:duration><qbpapi:min>1380</qbpapi:min><qbpapi:max>27720</qbpapi:max><qbpapi:average>9588.28431372549</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.26666666666666666</qbpapi:min><qbpapi:max>0.26666666666666666</qbpapi:max><qbpapi:average>0.2666666666666661</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>1260</qbpapi:min><qbpapi:max>27600</qbpapi:max><qbpapi:average>9468.28431372549</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>230400</qbpapi:max><qbpapi:average>22000.29411764706</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>204</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_1kadmbq" name="Το αφήνουμε στην άκρη"><qbpapi:duration><qbpapi:min>540</qbpapi:min><qbpapi:max>6750</qbpapi:max><qbpapi:average>4004.7</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.6666666666666666</qbpapi:min><qbpapi:max>0.6666666666666666</qbpapi:max><qbpapi:average>0.6666666666666659</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>240</qbpapi:min><qbpapi:max>6450</qbpapi:max><qbpapi:average>3704.7</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>57600</qbpapi:max><qbpapi:average>9792</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element><qbpapi:element id="Process_0e84fab.Activity_1w1yebe" name="Ψήνουμε σε προθερμασμένο φούρνο στον αέρα στους 180-200 ºC"><qbpapi:duration><qbpapi:min>5640</qbpapi:min><qbpapi:max>27650</qbpapi:max><qbpapi:average>10314.2</qbpapi:average></qbpapi:duration><qbpapi:cost><qbpapi:min>0.13333333333333333</qbpapi:min><qbpapi:max>0.13333333333333333</qbpapi:max><qbpapi:average>0.13333333333333325</qbpapi:average></qbpapi:cost><qbpapi:waitingTime><qbpapi:min>5580</qbpapi:min><qbpapi:max>27590</qbpapi:max><qbpapi:average>10254.2</qbpapi:average></qbpapi:waitingTime><qbpapi:idleTime><qbpapi:min>0</qbpapi:min><qbpapi:max>230400</qbpapi:max><qbpapi:average>28224</qbpapi:average></qbpapi:idleTime><qbpapi:costOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:costOverThreshold><qbpapi:durationOverThreshold><qbpapi:min>0</qbpapi:min><qbpapi:max>0</qbpapi:max><qbpapi:average>0</qbpapi:average></qbpapi:durationOverThreshold><qbpapi:count>100</qbpapi:count></qbpapi:element></qbpapi:elements><qbpapi:resources><qbpapi:resource id="QBP_DEFAULT_RESOURCE"><qbpapi:utilization>0.36444105303319346</qbpapi:utilization></qbpapi:resource><qbpapi:resource id="qbp_74ad0106-101c-dff1-468a-8a8fc56064fb"><qbpapi:utilization>0.37004959938954596</qbpapi:utilization></qbpapi:resource><qbpapi:resource id="qbp_35992699-1e4e-ae65-a9c9-0ba23fd3ee24"><qbpapi:utilization>1</qbpapi:utilization></qbpapi:resource></qbpapi:resources></qbpapi:Results><qbpapi:CycleTimesData><qbpapi:min>620420</qbpapi:min><qbpapi:max>961940</qbpapi:max><qbpapi:binWidth>34152</qbpapi:binWidth><qbpapi:values><qbpapi:value>2</qbpapi:value><qbpapi:value>7</qbpapi:value><qbpapi:value>33</qbpapi:value><qbpapi:value>8</qbpapi:value><qbpapi:value>27</qbpapi:value><qbpapi:value>16</qbpapi:value><qbpapi:value>1</qbpapi:value><qbpapi:value>6</qbpapi:value></qbpapi:values></qbpapi:CycleTimesData><qbpapi:CycleTimesInTimetableData><qbpapi:min>156430</qbpapi:min><qbpapi:max>268340</qbpapi:max><qbpapi:binWidth>11191</qbpapi:binWidth><qbpapi:values><qbpapi:value>2</qbpapi:value><qbpapi:value>2</qbpapi:value><qbpapi:value>3</qbpapi:value><qbpapi:value>16</qbpapi:value><qbpapi:value>27</qbpapi:value><qbpapi:value>27</qbpapi:value><qbpapi:value>15</qbpapi:value><qbpapi:value>4</qbpapi:value><qbpapi:value>3</qbpapi:value><qbpapi:value>1</qbpapi:value></qbpapi:values></qbpapi:CycleTimesInTimetableData><qbpapi:WaitingTimesData><qbpapi:min>153700</qbpapi:min><qbpapi:max>326150</qbpapi:max><qbpapi:binWidth>17245</qbpapi:binWidth><qbpapi:values><qbpapi:value>2</qbpapi:value><qbpapi:value>2</qbpapi:value><qbpapi:value>2</qbpapi:value><qbpapi:value>3</qbpapi:value><qbpapi:value>4</qbpapi:value><qbpapi:value>6</qbpapi:value><qbpapi:value>7</qbpapi:value><qbpapi:value>27</qbpapi:value><qbpapi:value>31</qbpapi:value><qbpapi:value>16</qbpapi:value></qbpapi:values></qbpapi:WaitingTimesData><qbpapi:CostsData><qbpapi:min>8.42222222222222</qbpapi:min><qbpapi:max>20.311111111111103</qbpapi:max><qbpapi:binWidth>2</qbpapi:binWidth><qbpapi:values><qbpapi:value>59</qbpapi:value><qbpapi:value>25</qbpapi:value><qbpapi:value>14</qbpapi:value><qbpapi:value>1</qbpapi:value><qbpapi:value>1</qbpapi:value></qbpapi:values></qbpapi:CostsData></qbpapi:Results><qbp:processSimulationInfo xmlns:qbp="http://www.qbp-simulator.com/Schema201212" id="qbp_f1e33168-bf03-62d3-b36a-e6f7095ee463" processInstances="100" startDateTime="2021-05-10T06:00:00.000Z" currency="EUR"><qbp:arrivalRateDistribution type="FIXED" mean="600" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:arrivalRateDistribution><qbp:timetables><qbp:timetable id="QBP_DEFAULT_TIMETABLE" default="true" name="Default"><qbp:rules><qbp:rule fromTime="09:00:00.000+00:00" toTime="17:00:00.000+00:00" fromWeekDay="MONDAY" toWeekDay="FRIDAY"/></qbp:rules></qbp:timetable><qbp:timetable id="QBP_247_TIMETABLE" default="false" name="24/7"><qbp:rules><qbp:rule fromTime="00:00:00.000+00:00" toTime="23:59:59.999+00:00" fromWeekDay="MONDAY" toWeekDay="SUNDAY"/></qbp:rules></qbp:timetable></qbp:timetables><qbp:resources><qbp:resource id="QBP_DEFAULT_RESOURCE" name="Bechamel Cook" totalAmount="1" costPerHour="8" timetableId="QBP_DEFAULT_TIMETABLE"/><qbp:resource id="qbp_74ad0106-101c-dff1-468a-8a8fc56064fb" name="Mince Meat Cook" totalAmount="1" costPerHour="8" timetableId="QBP_DEFAULT_TIMETABLE"/><qbp:resource id="qbp_35992699-1e4e-ae65-a9c9-0ba23fd3ee24" name="Pasta Cook" totalAmount="1" costPerHour="8" timetableId="QBP_DEFAULT_TIMETABLE"/></qbp:resources><qbp:elements><qbp:element id="qbp_ebe0df38-bd9a-d314-f50c-8dc6ce72663b" elementId="Event_0k13lqt"><qbp:durationDistribution type="FIXED" mean="60" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution></qbp:element><qbp:element id="qbp_00cd2d67-fc7a-4295-c8d9-f806c5cc54f7" elementId="Event_1ie30hi"><qbp:durationDistribution type="FIXED" mean="600" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution></qbp:element><qbp:element id="qbp_86a9b6c4-5e00-d25d-5255-e36ee4c0de6f" elementId="Event_1c76fwr"><qbp:durationDistribution type="FIXED" mean="1800" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution></qbp:element><qbp:element id="qbp_14019790-11a1-957c-4584-78a8c0079691" elementId="Event_1yj2ip7"><qbp:durationDistribution type="FIXED" mean="1800" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution></qbp:element><qbp:element id="qbp_918cf436-f698-a2e2-583a-cb75e46d50e5" elementId="Event_1q58pe0"><qbp:durationDistribution type="FIXED" mean="240" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution></qbp:element><qbp:element id="qbp_2ad1628e-aad0-4308-5fc0-e11cedac3686" elementId="Event_0lmbv92"><qbp:durationDistribution type="FIXED" mean="300" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution></qbp:element><qbp:element id="qbp_2cdab265-721c-33c3-76b6-36fc6f426b94" elementId="Event_0au78gl"><qbp:durationDistribution type="FIXED" mean="300" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution></qbp:element><qbp:element id="qbp_e7d54045-411c-449b-f169-5db7d7d20b85" elementId="Event_1b0m8xi"><qbp:durationDistribution type="FIXED" mean="300" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution></qbp:element><qbp:element id="qbp_b678f0fd-c574-6b1c-9b0f-a1cc966b3cf1" elementId="Event_1dgw865"><qbp:durationDistribution type="FIXED" mean="300" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution></qbp:element><qbp:element id="qbp_35082a6c-9a33-7ee5-47ee-d135ed50a176" elementId="Activity_1da52af"><qbp:durationDistribution type="FIXED" mean="60" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_35992699-1e4e-ae65-a9c9-0ba23fd3ee24</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_37147192-c7e6-944b-d104-9ef581ab237a" elementId="Activity_08rupyy"><qbp:durationDistribution type="FIXED" mean="30" arg1="NaN" arg2="NaN"><qbp:timeUnit>seconds</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_35992699-1e4e-ae65-a9c9-0ba23fd3ee24</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_ecc82c41-1e2a-a8dd-948d-2acbf6614ef9" elementId="Activity_00i2zgt"><qbp:durationDistribution type="FIXED" mean="120" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>QBP_DEFAULT_RESOURCE</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_82657c57-a8af-9eff-8ff8-cf9de6ffeb66" elementId="Activity_0ms0chv"><qbp:durationDistribution type="FIXED" mean="60" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>QBP_DEFAULT_RESOURCE</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_7f19208d-46bc-dbea-c08a-4f99e737d984" elementId="Activity_1hg6m6m"><qbp:durationDistribution type="FIXED" mean="120" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_35992699-1e4e-ae65-a9c9-0ba23fd3ee24</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_12bfc7b8-3ab9-8caf-568e-07817d460e9d" elementId="Activity_0irdzbf"><qbp:durationDistribution type="FIXED" mean="30" arg1="NaN" arg2="NaN"><qbp:timeUnit>seconds</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>QBP_DEFAULT_RESOURCE</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_ffb85db2-2e75-2fd0-c54d-4b69de30a83b" elementId="Activity_1yk2bfn"><qbp:durationDistribution type="FIXED" mean="20" arg1="NaN" arg2="NaN"><qbp:timeUnit>seconds</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_74ad0106-101c-dff1-468a-8a8fc56064fb</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_b19ab436-11f8-5f35-95e1-91390f7a30e8" elementId="Activity_1pkqj7w"><qbp:durationDistribution type="FIXED" mean="120" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>QBP_DEFAULT_RESOURCE</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_a011f245-be7e-06c3-87a9-56b175026296" elementId="Activity_1q0am8u"><qbp:durationDistribution type="FIXED" mean="480" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_35992699-1e4e-ae65-a9c9-0ba23fd3ee24</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_140f11aa-33d4-d935-6232-606f09dd81e2" elementId="Activity_0on0em2"><qbp:durationDistribution type="FIXED" mean="60" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_74ad0106-101c-dff1-468a-8a8fc56064fb</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_dab6915a-b1f4-4f92-a65a-94f9209da55f" elementId="Activity_1anek17"><qbp:durationDistribution type="FIXED" mean="20" arg1="NaN" arg2="NaN"><qbp:timeUnit>seconds</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_74ad0106-101c-dff1-468a-8a8fc56064fb</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_65e07111-7ccc-9f58-f070-68e02d3f811d" elementId="Activity_1ba5rgz"><qbp:durationDistribution type="FIXED" mean="420" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_35992699-1e4e-ae65-a9c9-0ba23fd3ee24</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_edfb230f-bd74-a819-3b14-f21be68bfb96" elementId="Activity_0q181i7"><qbp:durationDistribution type="FIXED" mean="120" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_74ad0106-101c-dff1-468a-8a8fc56064fb</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_b0e7b347-5050-2dd2-030b-92d5602c5634" elementId="Activity_1ehycuv"><qbp:durationDistribution type="FIXED" mean="180" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>QBP_DEFAULT_RESOURCE</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_2a9ad1e7-4ee1-8667-d30d-b508fad75e1d" elementId="Activity_1hjadwq"><qbp:durationDistribution type="FIXED" mean="60" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_74ad0106-101c-dff1-468a-8a8fc56064fb</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_9078c2ac-804f-07d1-db06-bd053e93fb21" elementId="Activity_0v6xhbn"><qbp:durationDistribution type="FIXED" mean="20" arg1="NaN" arg2="NaN"><qbp:timeUnit>seconds</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_74ad0106-101c-dff1-468a-8a8fc56064fb</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_59273504-bac9-63d7-006b-7b2de5fefbf8" elementId="Activity_0vu1mct"><qbp:durationDistribution type="FIXED" mean="120" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_74ad0106-101c-dff1-468a-8a8fc56064fb</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_6ee632eb-b7fa-a72f-67e4-a7d11a210a33" elementId="Activity_1xjn6nk"><qbp:durationDistribution type="FIXED" mean="30" arg1="NaN" arg2="NaN"><qbp:timeUnit>seconds</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_35992699-1e4e-ae65-a9c9-0ba23fd3ee24</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_84446fcd-a868-cc0e-97e6-2084a3b99316" elementId="Activity_1ttpf81"><qbp:durationDistribution type="FIXED" mean="30" arg1="NaN" arg2="NaN"><qbp:timeUnit>seconds</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_74ad0106-101c-dff1-468a-8a8fc56064fb</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_57832c7b-6bf5-ecad-32ea-fa96f73a1686" elementId="Activity_0h3g05o"><qbp:durationDistribution type="FIXED" mean="30" arg1="NaN" arg2="NaN"><qbp:timeUnit>seconds</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_74ad0106-101c-dff1-468a-8a8fc56064fb</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_35afa20d-9bb0-7976-2fe6-8ff4f47a041e" elementId="Activity_1jhsnuf"><qbp:durationDistribution type="FIXED" mean="20" arg1="NaN" arg2="NaN"><qbp:timeUnit>seconds</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_35992699-1e4e-ae65-a9c9-0ba23fd3ee24</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_4902e444-2fb6-8b2f-7cbc-45e3bbd596fe" elementId="Activity_1793qhx"><qbp:durationDistribution type="FIXED" mean="30" arg1="NaN" arg2="NaN"><qbp:timeUnit>seconds</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>QBP_DEFAULT_RESOURCE</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_7221b2b1-8f64-8818-7526-f20171202062" elementId="Activity_0v69pcs"><qbp:durationDistribution type="FIXED" mean="60" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_74ad0106-101c-dff1-468a-8a8fc56064fb</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_b742cbed-41fe-2dc0-d797-4e59efc58188" elementId="Activity_085fw0j"><qbp:durationDistribution type="FIXED" mean="20" arg1="NaN" arg2="NaN"><qbp:timeUnit>seconds</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_74ad0106-101c-dff1-468a-8a8fc56064fb</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_9ebba316-57c6-b334-4115-5d19b1ad06f8" elementId="Activity_045zb0n"><qbp:durationDistribution type="FIXED" mean="60" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_74ad0106-101c-dff1-468a-8a8fc56064fb</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_7a166807-6062-0c7a-151d-92d93a6d16ed" elementId="Activity_1pz9z7z"><qbp:durationDistribution type="FIXED" mean="60" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_74ad0106-101c-dff1-468a-8a8fc56064fb</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_fa210334-ddaf-1276-38c9-d857dfb1cdec" elementId="Activity_0vvoaem"><qbp:durationDistribution type="FIXED" mean="120" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_74ad0106-101c-dff1-468a-8a8fc56064fb</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_23ae4246-5c12-5c0d-5bb6-60cd029aea98" elementId="Activity_0f2sdgp"><qbp:durationDistribution type="FIXED" mean="180" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_35992699-1e4e-ae65-a9c9-0ba23fd3ee24</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_9b66446e-8b60-0a23-8180-e5f97c810896" elementId="Activity_0omtkzn"><qbp:durationDistribution type="FIXED" mean="60" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_74ad0106-101c-dff1-468a-8a8fc56064fb</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_14e4271e-5054-3c91-107d-fdf5bc90ccb7" elementId="Activity_11py707"><qbp:durationDistribution type="FIXED" mean="40" arg1="NaN" arg2="NaN"><qbp:timeUnit>seconds</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_74ad0106-101c-dff1-468a-8a8fc56064fb</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_86cf897e-fdec-d4ad-90fa-bff3acc5e513" elementId="Activity_0xkmdjd"><qbp:durationDistribution type="FIXED" mean="120" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_35992699-1e4e-ae65-a9c9-0ba23fd3ee24</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_7f903c7e-f7f3-5c2c-dcef-214acad08466" elementId="Activity_0rslci5"><qbp:durationDistribution type="FIXED" mean="120" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_35992699-1e4e-ae65-a9c9-0ba23fd3ee24</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_c696bab5-2d38-f70e-3417-c537e40818da" elementId="Activity_1akwmz4"><qbp:durationDistribution type="FIXED" mean="300" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_35992699-1e4e-ae65-a9c9-0ba23fd3ee24</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_20b0ca5a-b43e-35a9-db14-ba6b26f779ad" elementId="Activity_165kvm3"><qbp:durationDistribution type="FIXED" mean="120" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_35992699-1e4e-ae65-a9c9-0ba23fd3ee24</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_a9583988-af89-1f1d-28a7-3a3a71e11634" elementId="Activity_1kadmbq"><qbp:durationDistribution type="FIXED" mean="300" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>QBP_DEFAULT_RESOURCE</qbp:resourceId></qbp:resourceIds></qbp:element><qbp:element id="qbp_9b0dfed5-0106-adc0-12d2-66efe7cbf5a5" elementId="Activity_1w1yebe"><qbp:durationDistribution type="FIXED" mean="60" arg1="NaN" arg2="NaN"><qbp:timeUnit>minutes</qbp:timeUnit></qbp:durationDistribution><qbp:resourceIds><qbp:resourceId>qbp_35992699-1e4e-ae65-a9c9-0ba23fd3ee24</qbp:resourceId></qbp:resourceIds></qbp:element></qbp:elements><qbp:sequenceFlows><qbp:sequenceFlow elementId="Flow_0hld4im" executionProbability="0.5"/><qbp:sequenceFlow elementId="Flow_0ii3tni" executionProbability="0.5"/><qbp:sequenceFlow elementId="Flow_06dcwer" executionProbability="0.5"/><qbp:sequenceFlow elementId="Flow_1t9m56k" executionProbability="0.5"/><qbp:sequenceFlow elementId="Flow_0dufeb4" executionProbability="0.5"/><qbp:sequenceFlow elementId="Flow_06q1q0j" executionProbability="0.5"/><qbp:sequenceFlow elementId="Flow_0ju3n50" executionProbability="0.5"/><qbp:sequenceFlow elementId="Flow_1ra5df5" executionProbability="0.5"/><qbp:sequenceFlow elementId="Flow_0vtw9zu" executionProbability="0.5"/><qbp:sequenceFlow elementId="Flow_0z1j1ts" executionProbability="0.5"/></qbp:sequenceFlows><qbp:statsOptions/></qbp:processSimulationInfo></bpmn:definitions>
