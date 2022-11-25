@@ -1,8 +1,9 @@
 # Databases
 
-### Project in PHP/mySQL, semester project for Databases course at [ECE](https://www.ece.ntua.gr/en)⚡, [NTUA](https://www.ntua.gr/en)🎓, academic year 2019-2020
+### Project for semester project in PHP/mySQL for Databases course at [ECE](https://www.ece.ntua.gr/en), [NTUA](https://www.ntua.gr/en)
+Academic year 2019-2020 (Professor [Kantere](https://www.ece.ntua.gr/en/staff/210))
 
-## 📋**Steps to follow in order to run the project**
+## **Steps to follow in order to run the project**
 
 ## Docker Environment Setup
 
@@ -49,10 +50,10 @@ localhost:8888 #για UI
 [GIT]: <https://git-scm.com/downloads>
 [Docker]: <https://hub.docker.com/editions/community/docker-ce-desktop-windows>
 
-### 👔Team Members
+### Team Members
 
-| Name - GitHub                                          |
-|--------------------------------------------------------|
-| [Konstantinos Papaioannou](https://github.com/kon-pap) |
-| [Vasileios Theodoropoulos](https://github.com/billothi)|
-| [Christos Tsoufis](https://github.com/ChristosTsoufis) |
+| Name |
+|-------------------------|
+| Konstantinos Papaioannou |
+| Vasileios Theodoropoulos|
+| Christos Tsoufis |
