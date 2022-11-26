@@ -1,0 +1,33 @@
+;3.i
+
+; This program implements the following:
+; Find the first 1 of the input and flashes all output leds till that position
+; and turns off the rest.
+; eg input: 00101000
+;   output: 11100000
+
+	IN 10H
+START:	MVI B,08H ;counter that keeps the number of 1st ON dip switch
+	LDA 2000H ;read input
+LOOP1:	MOV D,A   ;store A
+	MOV A,B
+	CPI 00H
+	JZ START
+	MOV A,D   ;restore A
+	RAL       ;with left rotation, put the flag in the end
+	DCR B     ;B--
+	JNC LOOP1
+	MVI C,FFH ;start creating output by initializing to all LEDs OFF
+NEXT:	MOV A,C
+	STC       ;set CY = 1
+	CMC       ;not CY --> CY = 0
+	RAR
+	MOV C,A   ;store new output value
+	INR B     ;B++
+	MOV A,B
+	CPI 08H   ;if I scan all 8 bits exit the loop
+	JNZ NEXT
+	MOV A,C
+	STA 3000H ;print result and check input again
+	JMP START
+	END

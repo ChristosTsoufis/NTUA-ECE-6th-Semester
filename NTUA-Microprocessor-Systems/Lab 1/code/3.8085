@@ -1,0 +1,31 @@
+START:
+     LDA 2000H      ;read input
+     CPI 63H        ;compare with 99=63Ç
+     JNC MODULO     ;if A > 99 go to modulo
+     MVI B,FFH      ;else, initialize B and continue
+DECA:
+     INR B          ;after H=FFH, here H=0
+     SUI 0AH        ;continuous subtraction with 10=0AH
+     JNC DECA       ;continue until A<0
+     ADI 0AH        ;here A<0, add 10
+     MOV M,A        ;M is used as a temporary variable to keep units
+     MOV A,B        ;transfer units of B to A
+     RLC            ;tens must be the 4 MSB's
+     RLC
+     RLC
+     RLC
+     ADD M          ;ádd M to 4 LSB's
+     CMA            ;fill out A because outputs have negative logic
+     LXI B,01F4H    ;set B-A for 500sec delay with DELB
+     STA 3000H      ;save & print to Leds
+     CALL DELB
+     JMP START
+MODULO:
+     CPI C8H         ;compare A with 200
+     JNC LESS_THAN_200
+     SUI C8H        ;if A >= 200, A = A-200
+     JMP START      ;go to START
+LESS_THAN_200:
+     SUI 64H        ;if A < 200, A = A-100
+     JMP START      ;go to START
+END

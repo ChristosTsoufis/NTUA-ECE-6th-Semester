@@ -1,0 +1,145 @@
+INITIALIZE:
+	IN 10H
+START:	
+	LXI H,0B00H		;load HL with the start of the memory 
+	MVI M,10H		;I will store the output byte
+	INX H			;10H means print nothing
+	MVI M,10H		;I point to the block 0B00H...0B05H
+	INX H			;0B00H will have the print code of 1st
+	MVI M,10H		;digit in right and so on. So I want	
+	INX H			;0B02H to 0B05 to have code 10H, to 
+	MVI M,10H		;print nothing.
+
+	;-----here user gives threshold constants K1, K2-----	
+	LXI B,03E8H		;register B counnts 1 sec delay	
+	MVI A,0DH		;enable interrupts
+	SIM			;in RST 6.5
+	EI
+	
+WAIT:
+	JMP WAIT
+
+INTR_ROUTINE:
+	POP H
+	EI
+
+READ_MSB:
+	CALL KIND
+	CPI 00H
+	JZ SAVE_MSB
+	CPI 01H
+	JZ SAVE_MSB
+	CPI 02H
+	JZ SAVE_MSB
+	CPI 03H
+	JZ SAVE_MSB
+	CPI 04H
+	JZ SAVE_MSB
+	CPI 05H
+	JZ SAVE_MSB
+	CPI 06H
+	JZ SAVE_MSB
+	CPI 07H
+	JZ SAVE_MSB
+	CPI 08H
+	JZ SAVE_MSB
+	CPI 09H
+	JZ SAVE_MSB
+	CPI 0AH
+	JZ SAVE_MSB
+	CPI 0BH
+	JZ SAVE_MSB
+	CPI 0CH
+	JZ SAVE_MSB
+	CPI 0DH
+	JZ SAVE_MSB
+	CPI 0EH
+	JZ SAVE_MSB
+	CPI 0FH
+	JZ SAVE_MSB
+
+SAVE_MSB:
+	LXI H,0B04H
+	ANI 0FH
+	INX H
+	MOV M,A
+	DCX H
+	RLC
+	RLC
+	RLC
+	RLC
+	MOV B,A
+
+READ_LSB:
+	CALL KIND
+	CPI 00H
+	JZ SAVE_LSB
+	CPI 01H
+	JZ SAVE_LSB
+	CPI 02H
+	JZ SAVE_LSB
+	CPI 03H
+	JZ SAVE_LSB
+	CPI 04H
+	JZ SAVE_LSB
+	CPI 05H
+	JZ SAVE_LSB
+	CPI 06H
+	JZ SAVE_LSB
+	CPI 07H
+	JZ SAVE_LSB
+	CPI 08H
+	JZ SAVE_LSB
+	CPI 09H
+	JZ SAVE_LSB
+	CPI 0AH
+	JZ SAVE_LSB
+	CPI 0BH
+	JZ SAVE_LSB
+	CPI 0CH
+	JZ SAVE_LSB
+	CPI 0DH
+	JZ SAVE_LSB
+	CPI 0EH
+	JZ SAVE_LSB
+	CPI 0FH
+	JZ SAVE_LSB
+
+SAVE_LSB:
+	ANI 0FH
+	MOV M,A
+	LXI D,0B00H
+	CALL STDM
+	CALL DCD
+	ADD B
+	MOV B,A
+
+THRESHOLD:
+	MVI C,10H	;K1 = 10H
+	MVI D,20H	;K2 = 20H
+	MVI E,30H	;K3 = 30H
+
+	MOV A,B	;restore input value
+	CPI 11H	;if A <= 10H, print 1st LSB LED
+	MVI A,01H
+	JC OUTPUT
+
+	MOV A,B
+	CPI 21H	;if A <= 20H, print 2nd LSB LED
+	MVI A,02H
+	JC OUTPUT
+
+
+	MOV A,B
+	CPI 31H	;if A <= 30H, print 3rd LSB LED
+	MVI A,04H
+	JC OUTPUT
+
+	MVI A,08H	;else print 4th LSB LED
+
+OUTPUT:
+	CMA
+	STA 3000H
+	JMP READ_MSB
+
+END

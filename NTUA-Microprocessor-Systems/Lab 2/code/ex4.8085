@@ -1,0 +1,92 @@
+;4
+
+;This program simulates the IC shown below:
+;|----A3--B3-----A2--B2-----A1--B1-----A0--B0-----
+;|     \  /       \  /       \  /       \  /     |
+;|      AND        OR         AND        OR      |
+;|        \       /            |          |      |
+;|         \     /|___         |          |      |
+;|           XOR      \        |          |      |
+;|            |        \       |          |      |
+;--x-x-x-x---X3--------X2------X1--------X0------|
+
+;Where  x  LEDs are OFF all the time
+;Result stored in B
+
+	IN 10H
+	MVI B,FFH
+	MOV A,B
+	STA 3000H
+START: LDA 2000H
+	ANI 03H    ;mask except for A0,B0
+	CPI 00H    ;if A0B0 = 00 then X0 = 0 and LED0 = OFF
+	JZ LED0
+	MOV A,B
+	STC
+	CMC
+	RAR        ;import 0(LED0 = ON) via right shift	
+	MOV B,A    ;store the temporary result
+	JMP X1
+LED0:  MOV A,B
+	STC
+	RAR        ;import 1 (LED0 = OFF) via right shift
+	MOV B,A  
+X1:	LDA 2000H
+	ANI 0CH    ;mask except for A1,B1
+	CPI 0CH    ;if A1B1 = 11 then X1 = 1 LED1 = 0N
+	JZ  LED1
+	MOV A,B
+	STC
+	RAR        ;import 1 (LED1 = OFF) via right shift
+	MOV B,A  
+	JMP X2
+LED1:	MOV A,B
+	STC
+	CMC
+	RAR        ;import 0(LED1 = ON) via right shift	
+	MOV B,A    ;store the temporary result
+X2:	MVI D,00H  ;keeps the resulting X2 value
+	LDA 2000H
+	ANI 30H    ;mask except for A2,B2
+	CPI 00H    ;if A2B2 = 00 then X2 = 0 and LED2 = OFF
+	JZ LED2
+	MVI D,01H
+	MOV A,B
+	STC
+	CMC
+	RAR        ;import 0(LED2 = ON) via right shift	
+	MOV B,A    ;store the temporary result
+	JMP X3
+LED2:  MOV A,B
+	STC
+	RAR        ;import 1 (LED2 = OFF) via right shift
+	MOV B,A  
+X3:	LDA 2000H
+	ANI C0H    ;mask except for A3,B3
+	CPI C0H    ;if A3B3 = 11 then 1
+	JZ XOR1
+	MOV A,D
+	CPI 01H    ;if X2 = 1 then we have LED3 = ON
+	JZ L3ON
+	JMP L3OFF
+XOR1:  MOV A,D
+	CPI 00H    ;if X2 = 0 then we have LED3 = ON
+	JZ L3ON
+L3OFF: MOV A,B
+	STC
+	RAR        ;import 1 (LED3 = OFF) via right shift 
+	JMP PRT
+L3ON:  MOV A,B
+	STC
+	CMC
+	RAR        ;import 0(LED3 = ON) via right shift	
+PRT:   RAR	    ;execute 4 RAR to send result to 4LSBs
+	RAR
+	RAR
+	RAR
+	ORI F0H    ;mask result to prevent tricky output
+	STA 3000H
+	JMP START
+	END
+	
+	

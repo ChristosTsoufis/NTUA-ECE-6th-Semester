@@ -1,0 +1,185 @@
+;3.iii
+
+; This program waits for the user to press a button from the hex keybord and prints its 
+; hex code in the two right digits of the 7-segment display without using KIND routine.
+
+	IN 10H      ;remove memory protection
+	LXI H,0A00H ;address where the array gor the 7-segment display starts
+	MVI M,10H   ;set 1st 7-seg display to show nothing, continue till 4th 7-seg
+	INX H       ;I point to the block 0A00H...0A05H
+	MVI M,10H   ;0A00H will have the print code of 1st
+	INX H       ;digit in right and so on. So I want
+	MVI M,10H   ;0A00H to 0A03 to have code 10H, so to 
+	INX H       ;print nothing.
+	MVI M,10H
+SCAN:  MVI A,FFH
+	STC
+	CMC
+NEW:	RAL       
+	STA 2800H  ;choose scan port
+	MOV B,A    ;store scan port 8bit, ready to read port 1800H
+	LDA 1800H
+	ANI 07H    ;using the mask to eliminate first 5 MSBs of read port
+	CPI 06H    ;check if 1st column pushed
+	JZ COL1
+	CPI 05H    ;check if 2nd column pushed
+	JZ COL2
+	CPI 03H    ;check if 3rd column pushed
+	JZ COL3
+	MOV A,B    ;restore 8bit of current scan port
+	CPI 7FH    ;checking if this was the last scanned port
+	JZ SCAN
+	STC 
+	JMP NEW    ;check the next scan port
+COL1:  MOV A,B
+	LXI H,0A04H
+	CPI FEH    ;checking which row was activated, if row0 continue else check for row1
+	JNZ C1R1
+	LXI H,0A04H
+	MVI M,06H  ;INSTR_STEP = 86 -> 6 printed in 5th 7-seg and 8 printed in 6th 7-seg
+	INX H
+	MVI M,08H
+	JMP PRT
+C1R1:	CPI FDH
+	JNZ C1R2
+	MVI M,04H  ;RUN = 84
+	INX H
+	MVI M,08H
+	JMP PRT
+C1R2:	CPI FBH
+	JNZ C1R3
+	MVI M,00H  ;0 = 00
+	INX H
+	MVI M,00H
+	JMP PRT
+C1R3:	CPI F7H
+	JNZ C1R4
+	MVI M,01H  ;1 = 01
+	INX H
+	MVI M,00H
+	JMP PRT
+C1R4:	CPI EFH
+	JNZ C1R5
+	MVI M,04H  ;4 = 04
+	INX H
+	MVI M,00H
+	JMP PRT
+C1R5:	CPI DFH
+	JNZ C1R6
+	MVI M,07H  ;7 = 07
+	INX H
+	MVI M,00H
+	JMP PRT
+C1R6:	CPI BFH
+	JNZ C1R7
+	MVI M,0AH  ;A = 0A
+	INX H
+	MVI M,00H
+	JMP PRT
+C1R7:	CPI 7FH
+	JNZ SCAN
+	MVI M,0DH  ;D = 0d
+	INX H
+	MVI M,00H
+	JMP PRT
+COL2:  MOV A,B
+	LXI H,0A04H
+	CPI FEH    ;checking which row was activated, if row0 continue else check for row1
+	JNZ C2R1
+	MVI M,05H  ;FETCH_PC = 85
+	INX H
+	MVI M,08H
+	JMP PRT
+C2R1:	CPI FDH
+	JNZ C2R2
+	MVI M,00H  ;FETCH_REG = 80
+	INX H
+	MVI M,08H
+	JMP PRT
+C2R2:	CPI FBH
+	JNZ C2R3
+	MVI M,03H  ;STORE/INCR = 83
+	INX H
+	MVI M,08H
+	JMP PRT
+C2R3:	CPI F7H
+	JNZ C2R4
+	MVI M,02H  ;2 = 02
+	INX H
+	MVI M,00H
+	JMP PRT
+C2R4:	CPI EFH
+	JNZ C2R5
+	MVI M,05H  ;5 = 05
+	INX H
+	MVI M,00H
+	JMP PRT
+C2R5:	CPI DFH
+	JNZ C2R6
+	MVI M,08H  ;8 = 08
+	INX H
+	MVI M,00H
+	JMP PRT
+C2R6:	CPI BFH
+	JNZ C2R7
+	MVI M,0BH  ;B = 0b
+	INX H
+	MVI M,00H
+	JMP PRT
+C2R7:	CPI 7FH
+	JNZ SCAN
+	MVI M,0EH  ;E =0E
+	INX H
+	MVI M,00H
+	JMP PRT
+COL3:  MOV A,B
+	LXI H,0A04H
+	CPI FDH
+	JNZ C3R2
+	MVI M,02H  ;FETCH_ADRS = 82
+	INX H
+	MVI M,08H
+	JMP PRT
+C3R2:	CPI FBH
+	JNZ C3R3
+	MVI M,01H  ;DECR = 81
+	INX H
+	MVI M,08H
+	JMP PRT
+C3R3:	CPI F7H
+	JNZ C3R4
+	MVI M,03H  ;3 = 03
+	INX H
+	MVI M,00H
+	JMP PRT
+C3R4:	CPI EFH
+	JNZ C3R5
+	MVI M,06H  ;6 = 06
+	INX H
+	MVI M,00H
+	JMP PRT
+C3R5:	CPI DFH
+	JNZ C3R6
+	MVI M,09H  ;9 = 09
+	INX H
+	MVI M,00H
+	JMP PRT
+C3R6:	CPI BFH
+	JNZ C3R7
+	MVI M,0CH  ;C = 0c
+	INX H
+	MVI M,00H
+	JMP PRT
+C3R7:	CPI 7FH
+	JNZ SCAN
+	MVI M,0FH  ;D = 0F
+	INX H
+	MVI M,00H
+	JMP PRT
+PRT:	LXI D,0A00H
+	CALL STDM
+	CALL DCD
+	DCX H
+	DCX H
+	JMP SCAN
+	END

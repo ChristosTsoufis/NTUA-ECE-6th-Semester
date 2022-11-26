@@ -1,0 +1,43 @@
+;3.ii
+
+;This program waits for the user to press a button from the hex keybord
+;between 1 and 8 and then if it's in [1,4] it flashes 4 times all the 
+;4 LSB LEDs else (if it's in [5,8]) it also flashes 4 times all the
+;4 MSB LEDs in the output (3000H). (LSB-->1 and MSB-->8)
+;eg user input: 3
+;       output: 00001111
+
+	IN 10H
+	LXI B,01F4H ;set B-C to 500 so as to have 0,5sec delay
+START: MVI D,00H
+	CALL KIND   ;input --> A
+	CPI 01H     ;checking whether pressed button belongs in [1,8]
+	JC START
+	CPI 09H     ;checking whether A(iput) < 09H
+	JNC START
+	CPI 05H     ;checking if greater than 5
+	JNC FULL
+FLASH:	MVI A,F0H
+	STA 3000H
+	CALL DELB   ;turn them ON for 0,5sec
+	MVI A,FFH
+	STA 3000H
+	CALL DELB   ;turn them OFF for 0,5sec
+	INR D       ;D++
+	MOV A,D
+	CPI 04H     ;checking whether A(iput) < 04H
+	JNZ FLASH
+	JMP START
+FULL:	MVI A,0FH
+	STA 3000H
+	CALL DELB   ;turn them ON for 0,5 sec
+	MVI A,FFH
+	STA 3000H
+	CALL DELB   ;turn them OFF for 0,5 sec
+	INR D       ;D++
+	MOV A,D
+	CPI 04H
+	JNZ FULL
+	JMP START
+	END
+	

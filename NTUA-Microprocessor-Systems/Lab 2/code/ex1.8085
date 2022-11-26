@@ -1,0 +1,87 @@
+; 1.a
+; This section stores numbers 0 to 255 in the memory block that starts
+; in address 0900H, in declining order.
+
+IN 10H          	; Disable memory protection
+LXI H,0900H 		; Load initial address (HL<--0900H)
+                	; Store 255 to 0 in memory locations 0900H to 0A00H
+MVI E,FFH	    	; initialization (E<--FFH)
+			        
+START:
+	MOV M,E 	; store number in memory of HL pair
+	MOV A,E
+	CPI 00H
+	JZ B
+	DCR E		; E-- (previous number)
+	INX H		; HL++; (next memory location) 
+	JMP START 	; this loop is continued till B = 0
+; 1.b
+; This section counts the number of zeros in all the above stored
+; binary numbers and stores the result in register pair DE
+
+B:
+LXI H,0900H
+
+LOOP_NUMBERS:
+	MOV B,M		;mem[HL] = B 
+	MVI C,08H		;Initialise counter of digits to 8
+
+COUNT_ZEROS:
+	MOV A,B
+	RAR			;Rotate right and move LSB to CY
+	MOV B,A		;Save result to B
+	JC ONE		;If LSB is one
+	JMP ZERO		;If LSB is zero
+
+ONE:
+	DCR C			;Decrease counter
+	MOV A,C
+	CPI 00H		
+	JZ CONTINUE		;If we have reached the last digit
+	JMP COUNT_ZEROS	;Else keep counting
+
+ZERO:
+	INX D			;Increase number of total zeros
+	DCR C
+	MOV A,C
+	CPI 00H
+	JZ CONTINUE		;If we have reached the last digit
+	JMP COUNT_ZEROS	;Else keep counting
+
+CONTINUE:
+	MOV A,M
+	CPI 00H
+	JZ ANSWER		;If we have counted the last number
+	INX H
+	JMP LOOP_NUMBERS	;Else count zeros on next number
+
+ANSWER: 			;Result is 0400 here, as expected
+
+; 1.c
+; This section measures the number of numbers that are between 20H and 70H
+; and stores the result in register C
+
+				; here C has the number of numbers between  				
+				; 20H and 70H (20H<=number<=70H)
+NEXT:
+	LXI H,0900H	; reset memory register pair HL
+	MVI C,00H	; reset C
+LOOP1:
+	MOV A,M
+	MOV B,A
+	INX H
+	CPI 20H		
+	JC LOOP1		;If A < 20H try next number
+	CPI 71H		
+	JNC LOOP1		;If A >= 71H try next number
+	INR C			;20H <= A <= 70H -> Increase C
+	MOV A,B
+	CPI 20H
+	JZ RETURN
+	JMP LOOP1
+
+RETURN:			; programm ends with numbers 0 to 255 (dec) stored 
+				; in 0900H to 0A00H, DE register with the number
+				; of zeros and C with the number of numbers 
+				; between 20H and 70H
+	END

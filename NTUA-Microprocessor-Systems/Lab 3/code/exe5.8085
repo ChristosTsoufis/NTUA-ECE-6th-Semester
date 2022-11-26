@@ -1,0 +1,45 @@
+
+START:
+	MVI B,00H	;move in B = sum of all numbers, start from zero
+	MVI D,10H	;here, counter = 10H (=16) for each data to read
+	MVI E,10H	;one for each number
+
+TAKE_LSB:
+	IN 20H
+	ADD C		;A = C + LSB
+	MOV C,A	;store number in C
+	MOV A,B	;restore B
+	ADD C		;sum = sum + C 
+	MOV B,A	;store sum in B
+	DCR D		;D--
+	JMP TAKE_MSB
+
+TAKE_MSB:
+	MOV A,D
+	CPI 00H
+	JZ GPA_ROUTINE
+	IN 20H
+	RLC
+	RLC
+	RLC
+	RLC		;move MSB in MSB position
+	MOV C,A	;store MSB in C
+
+
+GPA_ROUTINE:		;divide by 10H = 16 to take GPA
+	MOV A,B
+	SUI 10H
+	JM END_1	;if <0 then GPA not whole
+	MOV B,A	;store in B
+	INR D		;D++
+	MOV A,D
+	CPI 10H	;when D = 10H, end
+	JZ END_2
+	JMP GPA_ROUTINE
+
+END_1:
+	MVI B,00H	;if <0 GPA = 0
+
+END_2:
+	MOV A,B	;restore GPA
+	END

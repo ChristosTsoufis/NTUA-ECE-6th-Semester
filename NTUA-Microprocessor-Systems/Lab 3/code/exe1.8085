@@ -1,0 +1,80 @@
+
+START:	
+	IN 10H			;remove memory protection
+	LXI H,0B00H		;load HL with the start of the memory 
+				;I will store the output byte
+	MVI M,10H		;10H means print nothing
+	INX H			;I point to the block 0B00H...0B05H
+	MVI M,10H		;0B00H will have the print code of 1st
+	INX H			;digit in right and so on. So I want	
+	MVI M,10H		;0B00H to 0B03 to have code 10H, to 
+	INX H			;print nothing.
+	MVI M,10H
+
+	LXI B,01F4H		;T = 1/2sec, so 500*0,1msec = 0,5sec
+
+	MVI A,0DH		;0DH = 00001101. Enable interrupts (EI is
+	SIM			;the 4th LSB bit) and disable RST5.5 & 7.5	
+	EI
+
+WAIT:				;infinite loop-wait for interrupts
+	JMP WAIT	
+
+INTR_ROUTINE:			;this is the interrupt service routine
+	POP H			;pop PC from stack, absense of RET command
+	
+	EI
+	MVI E,3CH		;60sec counter
+
+COUNTDOWN:
+	MOV A,E		;move to A
+	DCR A
+	MOV E,A		;E--
+	CPI FFH		;00H - 01H = FFH
+				;if A == FFH, wait for next interrupt
+	JNZ OUTPUT		;else go to OUTPUT
+	MVI A,00H
+	CMA
+	STA 3000H
+	JMP WAIT
+
+OUTPUT:
+	LXI H,0B04H 		;second from left digit
+	MVI D,00H		;initialize D
+
+DECADE:
+	CPI 0AH		;has a decade been counted?
+	JC CONTINUE		;if not --> continue
+	INR D			;else, incease D
+	SUI 0AH		;empty reg A
+	JMP DECADE		;check new decade
+
+CONTINUE:
+	ANI 0FH		;get 4 LSB of A
+	MOV M,A		;store in M
+	INX H
+	MOV A,D
+	ANI 0FH		;get 4 LSB of D
+	MOV M,A		;store in M
+
+	PUSH B
+	PUSH D
+	PUSH PSW
+	DI
+	MVI A,FFH		;turn LEDs ON
+	CMA
+	STA 3000H
+	CALL DELB		;for every blink of the LEDs, count 2 "CALL DELB" = 2 * 1/2 sec delay
+	MVI A,FFH		;turn LEDs OFF
+	STA 3000H
+	LXI D,0B00H		;print timer
+	CALL STDM
+	CALL DCD
+	CALL DELB
+	EI
+	POP PSW
+	POP D
+	POP B
+	JMP COUNTDOWN		;repeat
+
+END

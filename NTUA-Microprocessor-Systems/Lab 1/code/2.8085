@@ -1,0 +1,71 @@
+START:
+IN 10H
+MVI A,00H			;Temporary register that takes input and shows which LED will be
+				;turned ON
+
+MVI B,00H			;Register B saves the position of the last LED
+MVI C,00H			;Register C: 00->Increasing, 01H->Decreasing
+
+MAIN_LOOP:
+LDA 2000H 			;A = mem[2000H]
+RAR
+RAR				;CY has the second LSB
+JC SECOND_LSB_ON	
+
+SECOND_LSB_OFF:
+RAL
+JC LSB_ON
+
+LSB_OFF:
+MOV A,B
+CPI 00H			;Is it the first time?
+JZ FIRST_TIME			
+CPI 80H			;Is LED 8 ON? (2^7 = 128 = 80H)
+JNZ INCREASE		;if it isn't then increase B
+MVI B,01H
+MVI A,01H			;if it is then the next to open is LED 1
+JMP PRINT_CURRENT
+
+LSB_ON:
+MOV A,B
+CPI 00H			;Is it the first time?
+JZ FIRST_TIME
+CPI 01H			;Is LED 1 ON?
+JZ INCREASE			;If it is then start increasing
+CPI 80H			;Is LED 8 ON? (2^7 = 128 = 80H)
+JZ DECREASE			;If it is start decreasing
+MOV A,C		
+CPI 00H			;LED 1 and 8 are OFF. Are we increasing or decreasing?
+JZ INCREASE
+JMP DECREASE
+
+FIRST_TIME:
+MVI B,01H
+MOV A,B
+JMP PRINT_CURRENT
+
+INCREASE:
+MVI C,00H
+MOV A,B
+RLC
+MOV B,A
+JMP PRINT_CURRENT
+
+DECREASE:
+MVI C,01H
+MOV A,B
+RRC
+MOV B,A
+JMP PRINT_CURRENT
+
+SECOND_LSB_ON:
+MVI A,00H
+JMP PRINT_CURRENT
+
+PRINT_CURRENT:
+CMA
+STA 3000H
+CALL DELB
+JMP MAIN_LOOP
+
+END

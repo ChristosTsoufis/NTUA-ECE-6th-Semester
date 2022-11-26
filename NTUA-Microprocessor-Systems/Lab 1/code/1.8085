@@ -1,0 +1,17 @@
+START:
+MVI B,01H 		;B = 1
+LDA 2000H		;A = memory[2000]
+CPI 00H		;Σύγκριση του Α με το 0
+JZ L_2			;Αν το Α είναι μηδέν κάνε άλμα στο L_2
+WHILE_LOOP:
+RAR 			;Δεξιά περιστροφή του Α, CY
+JC L_1			;Αν το CY είναι 1 κάνε άλμα στο L_1
+INR B			;B = B + 1
+JNZ WHILE_LOOP       ;Επανάλαβε αν το Β είναι μη μηδενικό
+L_1:
+MOV A,B		;Α = Β
+L_2:
+CMA			;A = not A
+STA 3000H		;memory[3000] = A
+RST 1
+END

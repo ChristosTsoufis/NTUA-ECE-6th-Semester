@@ -1,0 +1,85 @@
+IN 10H
+LXI B,00FAH			;BC = 250, by using DELB it will add
+				;250ms delay
+
+MVI D,00H			;Initialise D, stores the location 
+				;to which we must return after blinking
+				;D = 0 -> Not Blinking
+				;D = 1 -> Blinking, start identifying signal
+				;D = 2 -> OFF has been identified
+				;D = 3 -> ON has been identified
+
+MVI E,00H			;Counter for 250ms intervals
+				;Stops the blinking when it 
+				;reaches 60 = 3CH
+
+LXI H,0900H			;HL contains the address where I store the 
+				;LEDs that I need ON
+MVI M,FFH
+
+IDENTIFY_SIGNAL:
+INR E
+CALL DELB
+LDA 2000H			;A = mem[2000H]
+RAR 				;CY has the LSB
+JNC LSB_OFF_FIRST		;LSB is OFF 
+MOV A,D			;LSB is ON
+CPI 00H			
+JZ IDENTIFY_SIGNAL	;No blinking, then skip
+JMP BLINK			;Blink
+
+LSB_OFF_FIRST:
+INR E
+CALL DELB
+LDA 2000H			;A = mem[2000H]
+RAR
+JC LSB_ON			;LSB is ON
+MOV A,D			;LSB is OFF
+CPI 00H
+JZ LSB_OFF_FIRST		;LSB is still OFF without blinking so wait
+MVI D,02H			;Return here after blinking
+JMP BLINK
+
+LSB_ON:
+INR E
+CALL DELB
+LDA 2000H			;A = mem[2000H]
+RAR
+JNC BLINK_FOR_15S		;LSB is OFF
+MOV A,D			;LSB is ON
+CPI 00H
+JZ LSB_ON			;LSB still ON without blinking so wait
+MVI D,03H			;Return here after blinking
+JMP BLINK	
+
+BLINK_FOR_15S:
+MVI D,01H			;Blinking
+MVI E,00H			;Reset counter
+JMP BLINK
+
+BLINK:
+MOV A,E			
+CPI 3CH			;Check whether counter is over 60
+JC TURN_ON_OFF		;If counter is less than 60 keep blinking
+MVI A,FFH			;If counter is greater than 60 turn off lights
+STA 3000H
+MVI D,00H
+JMP IDENTIFY_SIGNAL
+
+TURN_ON_OFF:			
+MOV A,M			
+CMA				;Either lights are all ON or OFF
+MOV M,A
+STA 3000H			;Print the answer
+
+DECIDE_NEXT:		
+MOV A,D			;Based on the contents of D decide next location
+CPI 01H
+JZ IDENTIFY_SIGNAL
+CPI 02H
+JZ LSB_OFF_FIRST
+CPI 03H
+JZ LSB_ON
+
+END
+
