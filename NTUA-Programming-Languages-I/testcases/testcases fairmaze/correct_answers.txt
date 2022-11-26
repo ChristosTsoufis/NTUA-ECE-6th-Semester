@@ -1,0 +1,15 @@
+maze1.txt 4
+maze2.txt 2
+maze3.txt 9
+maze4.txt 4
+maze5.txt 3
+maze6.txt 5
+maze7.txt 31
+maze8.txt 51
+
+
+fairmaze.in1 -> 2
+fairmaze.in2 -> 4
+fairmaze.in3 -> 20
+fairmaze.in11 -> 15303
+fairmaze.in17 -> 418003
